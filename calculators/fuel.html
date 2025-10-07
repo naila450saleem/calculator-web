@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculatorHub - Fuel Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #4285f4;
+            --primary-red: #ea4335;
+            --primary-yellow: #fbbc05;
+            --primary-green: #34a853;
+            --light-gray: #f8f9fa;
+            --medium-gray: #dadce0;
+            --dark-gray: #5f6368;
+            --text-color: #202124;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Top Ad Banner */
+        .top-ad {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            text-align: center;
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+
+        .logo-text {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Underline animation */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Active link */
+        nav a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Hide toggle by default */
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Show toggle only on mobile */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .content-area {
+            flex: 3;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .calculator-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-header h1 {
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .calculator-header p {
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+        
+        /* Fuel Calculator Styles */
+        .fuel-calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 0;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .amount-input, .unit-select {
+            flex: 1;
+        }
+        
+        .input-row input, .input-row select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .input-row input:focus, .input-row select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 20px 0;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        .result-box {
+            background-color: var(--light-gray);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .result-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary-green);
+        }
+        
+        .result-details {
+            color: var(--dark-gray);
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: left;
+        }
+        
+        .result-details div {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .result-details .savings {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+        
+        .quick-calculations {
+            margin-top: 30px;
+        }
+        
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .quick-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--medium-gray);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .quick-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .quick-distance {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+        
+        .quick-cost {
+            font-size: 14px;
+            color: var(--primary-blue);
+        }
+        
+        /* Sidebar Styles */
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .sidebar-widget h3 {
+            color: var(--primary-blue);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .about-text {
+            color: var(--dark-gray);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .calc-list {
+            list-style: none;
+        }
+        
+        .calc-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            transition: background-color 0.2s;
+        }
+        
+        .calc-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .calc-list li:hover {
+            background-color: rgba(66, 133, 244, 0.05);
+            padding-left: 8px;
+            border-radius: 4px;
+        }
+        
+        .calc-list a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+        }
+        
+        .calc-list a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .calc-list i {
+            color: var(--primary-blue);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-ad {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: white;
+            padding: 50px 0 25px;
+            margin-top: 50px;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+        }
+        
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .footer-links-column h4 {
+            margin-bottom: 18px;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .footer-links-column ul {
+            list-style: none;
+        }
+        
+        .footer-links-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links-column a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .footer-links-column a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .header-ad {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .calculator-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 35px;
+            }
+            
+            .footer-links {
+                justify-content: flex-start;
+                gap: 50px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .top-ad {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+            
+            .input-row {
+                flex-direction: column;
+            }
+            
+            .quick-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .result-amount {
+                font-size: 24px;
+            }
+        }
+
+        .unit-info {
+            font-size: 12px;
+            color: var(--dark-gray);
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Ad Banner -->
+    <div class="top-ad">
+        <div class="container">
+            Advertisement Space - Top Banner (970x90)
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-calculator logo-icon"></i>
+                    <div class="logo-text">Calculator<span>Hub</span></div>
+                </div>
+
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+                <nav>
+                    <ul>
+                        <li><a href="../Home.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../calculators.html">All Calculators</a></li>
+                        <li><a href="../faq.html">FAQ's</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <div class="main-content">
+            <div class="content-area">
+                <!-- Calculator Header -->
+                <div class="calculator-header">
+                    <h1>Fuel Calculator</h1>
+                    <p>Calculate fuel cost, consumption, and trip expenses for your vehicle</p>
+                </div>
+                
+                <!-- Fuel Calculator -->
+                <div class="fuel-calculator">
+                    <div class="calculator-box">
+                        <!-- Calculation Type -->
+                        <div class="input-group">
+                            <label>Calculation Type:</label>
+                            <div class="input-row">
+                                <div class="unit-select">
+                                    <select id="calculation-type">
+                                        <option value="cost">Fuel Cost for Trip</option>
+                                        <option value="consumption">Fuel Consumption</option>
+                                        <option value="mileage">Fuel Mileage</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Distance -->
+                        <div class="input-group">
+                            <label>Distance:</label>
+                            <div class="input-row">
+                                <div class="amount-input">
+                                    <input type="number" id="distance" placeholder="Enter distance" min="0" step="0.1" value="100">
+                                </div>
+                                <div class="unit-select">
+                                    <select id="distance-unit">
+                                        <option value="km">Kilometers (km)</option>
+                                        <option value="miles">Miles</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fuel Efficiency -->
+                        <div class="input-group" id="efficiency-group">
+                            <label>Fuel Efficiency:</label>
+                            <div class="input-row">
+                                <div class="amount-input">
+                                    <input type="number" id="efficiency" placeholder="Enter efficiency" min="0" step="0.1" value="12">
+                                </div>
+                                <div class="unit-select">
+                                    <select id="efficiency-unit">
+                                        <option value="kmpl">km per liter</option>
+                                        <option value="mpg">miles per gallon</option>
+                                        <option value="l100km">liters per 100km</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fuel Price -->
+                        <div class="input-group" id="price-group">
+                            <label>Fuel Price:</label>
+                            <div class="input-row">
+                                <div class="amount-input">
+                                    <input type="number" id="fuel-price" placeholder="Enter fuel price" min="0" step="0.01" value="1.2">
+                                </div>
+                                <div class="unit-select">
+                                    <select id="price-unit">
+                                        <option value="per-liter">per liter</option>
+                                        <option value="per-gallon">per gallon</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fuel Used -->
+                        <div class="input-group" id="fuel-used-group" style="display: none;">
+                            <label>Fuel Used:</label>
+                            <div class="input-row">
+                                <div class="amount-input">
+                                    <input type="number" id="fuel-used" placeholder="Enter fuel used" min="0" step="0.1" value="50">
+                                </div>
+                                <div class="unit-select">
+                                    <select id="fuel-used-unit">
+                                        <option value="liters">Liters</option>
+                                        <option value="gallons">Gallons</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Calculate Button -->
+                        <button class="calculate-btn" id="calculate-fuel">
+                            <i class="fas fa-gas-pump"></i> Calculate
+                        </button>
+                        
+                        <!-- Result Display -->
+                        <div class="result-box">
+                            <div class="result-amount" id="fuel-result">-</div>
+                            <div class="result-details" id="fuel-details">
+                                <!-- Results will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Calculations -->
+                    <div class="quick-calculations">
+                        <h3>Common Trip Distances</h3>
+                        <div class="quick-grid" id="quick-trips">
+                            <!-- Quick trips will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <div class="sidebar-ad" style="width:300px; height:600px; background:#f1f1f1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:14px; color:#555; border:1px solid #ddd;">
+                        Advertisement Space - Sidebar (300x600)
+                    </div>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>All Calculators</h3>
+                    <ul class="calc-list">
+                        <!-- Basic -->
+                        <li data-category="basic"><a href="#"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
+
+                        <!-- Conversion -->
+                        <li data-category="conversion"><a href="#"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-money-bill-wave"></i> Currency Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
+
+                        <!-- Automotive -->
+                        <li data-category="automotive"><a href="#"><i class="fas fa-gas-pump"></i> Fuel Calculator</a></li>
+                        <li data-category="automotive"><a href="#"><i class="fas fa-car"></i> Car Loan Calculator</a></li>
+                        <li data-category="automotive"><a href="#"><i class="fas fa-road"></i> Trip Calculator</a></li>
+
+                        <!-- Financial -->
+                        <li data-category="financial"><a href="#"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-tags"></i> Discount Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <i class="fas fa-calculator logo-icon"></i>
+                        <div class="logo-text">Calculator<span>Hub</span></div>
+                    </div>
+                    <p class="about-text" style="margin-top: 18px;">
+                        Your professional calculation companion. Accurate, reliable, and free tools for all your calculation needs.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Calculators</h4>
+                        <ul>
+                            <li><a href="#" data-category="all">All Calculators</a></li>
+                            <li><a href="#" data-category="basic">Basic Calculator</a></li>
+                            <li><a href="#" data-category="financial">Financial Calculators</a></li>
+                            <li><a href="#" data-category="automotive">Automotive Calculators</a></li>
+                            <li><a href="#" data-category="conversion">Conversion Tools</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="sitemap.html">Sitemap</a></li>
+                            <li><a href="help.html">Help Center</a></li>
+                            <li><a href="feedback.html">Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 CalculatorHub. All rights reserved. | Professional Calculation Tools
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ----------------------------
+            // 🔹 Mobile Menu Toggle
+            // ----------------------------
+            const toggleBtn = document.querySelector(".menu-toggle i");
+            const navMenu = document.querySelector("nav ul");
+
+            if (toggleBtn && navMenu) {
+                toggleBtn.parentElement.addEventListener("click", () => {
+                    navMenu.classList.toggle("show");
+                    if (navMenu.classList.contains("show")) {
+                        toggleBtn.classList.remove("fa-bars");
+                        toggleBtn.classList.add("fa-times");
+                    } else {
+                        toggleBtn.classList.remove("fa-times");
+                        toggleBtn.classList.add("fa-bars");
+                    }
+                });
+            }
+
+            // ----------------------------
+            // 🔹 Active Link Highlight
+            // ----------------------------
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active");
+                }
+            });
+
+            // ----------------------------
+            // 🔹 CALCULATION TYPE CHANGE
+            // ----------------------------
+            document.getElementById('calculation-type').addEventListener('change', function() {
+                const type = this.value;
+                const efficiencyGroup = document.getElementById('efficiency-group');
+                const priceGroup = document.getElementById('price-group');
+                const fuelUsedGroup = document.getElementById('fuel-used-group');
+                
+                // Reset all groups
+                efficiencyGroup.style.display = 'block';
+                priceGroup.style.display = 'block';
+                fuelUsedGroup.style.display = 'none';
+                
+                // Show/hide based on calculation type
+                if (type === 'consumption') {
+                    fuelUsedGroup.style.display = 'block';
+                    efficiencyGroup.style.display = 'none';
+                } else if (type === 'mileage') {
+                    priceGroup.style.display = 'none';
+                }
+                
+                updateFuelResult();
+            });
+
+            // ----------------------------
+            // 🔹 FUEL CALCULATION FUNCTIONS
+            // ----------------------------
+            
+            // Convert between units
+            function convertDistance(distance, fromUnit, toUnit) {
+                if (fromUnit === toUnit) return distance;
+                if (fromUnit === 'km' && toUnit === 'miles') return distance * 0.621371;
+                if (fromUnit === 'miles' && toUnit === 'km') return distance * 1.60934;
+                return distance;
+            }
+            
+            function convertEfficiency(efficiency, fromUnit, toUnit) {
+                if (fromUnit === toUnit) return efficiency;
+                
+                // km/L to other units
+                if (fromUnit === 'kmpl' && toUnit === 'mpg') return efficiency * 2.35215;
+                if (fromUnit === 'kmpl' && toUnit === 'l100km') return 100 / efficiency;
+                
+                // MPG to other units
+                if (fromUnit === 'mpg' && toUnit === 'kmpl') return efficiency / 2.35215;
+                if (fromUnit === 'mpg' && toUnit === 'l100km') return 235.215 / efficiency;
+                
+                // L/100km to other units
+                if (fromUnit === 'l100km' && toUnit === 'kmpl') return 100 / efficiency;
+                if (fromUnit === 'l100km' && toUnit === 'mpg') return 235.215 / efficiency;
+                
+                return efficiency;
+            }
+            
+            // Calculate fuel cost for trip
+            function calculateFuelCost(distance, efficiency, fuelPrice, distanceUnit, efficiencyUnit, priceUnit) {
+                // Convert everything to consistent units
+                const distanceKm = convertDistance(distance, distanceUnit, 'km');
+                const efficiencyKmpl = convertEfficiency(efficiency, efficiencyUnit, 'kmpl');
+                const pricePerLiter = priceUnit === 'per-gallon' ? fuelPrice / 3.78541 : fuelPrice;
+                
+                const fuelNeeded = distanceKm / efficiencyKmpl;
+                const totalCost = fuelNeeded * pricePerLiter;
+                
+                return {
+                    fuelNeeded: fuelNeeded,
+                    totalCost: totalCost,
+                    costPerKm: totalCost / distanceKm
+                };
+            }
+            
+            // Calculate fuel consumption
+            function calculateFuelConsumption(distance, fuelUsed, distanceUnit, fuelUsedUnit) {
+                const distanceKm = convertDistance(distance, distanceUnit, 'km');
+                const fuelUsedLiters = fuelUsedUnit === 'gallons' ? fuelUsed * 3.78541 : fuelUsed;
+                
+                const consumptionL100km = (fuelUsedLiters / distanceKm) * 100;
+                const consumptionKmpl = distanceKm / fuelUsedLiters;
+                const consumptionMpg = convertEfficiency(consumptionKmpl, 'kmpl', 'mpg');
+                
+                return {
+                    l100km: consumptionL100km,
+                    kmpl: consumptionKmpl,
+                    mpg: consumptionMpg
+                };
+            }
+            
+            // Calculate fuel mileage
+            function calculateFuelMileage(distance, efficiency, distanceUnit, efficiencyUnit) {
+                const distanceKm = convertDistance(distance, distanceUnit, 'km');
+                const efficiencyKmpl = convertEfficiency(efficiency, efficiencyUnit, 'kmpl');
+                
+                const fuelNeeded = distanceKm / efficiencyKmpl;
+                const costPerKm = 1 / efficiencyKmpl; // Assuming $1 per liter for comparison
+                
+                return {
+                    fuelNeeded: fuelNeeded,
+                    efficiencyKmpl: efficiencyKmpl,
+                    efficiencyMpg: convertEfficiency(efficiencyKmpl, 'kmpl', 'mpg')
+                };
+            }
+            
+            // ----------------------------
+            // 🔹 UPDATE FUEL RESULT
+            // ----------------------------
+            function updateFuelResult() {
+                const type = document.getElementById('calculation-type').value;
+                const distance = parseFloat(document.getElementById('distance').value);
+                const distanceUnit = document.getElementById('distance-unit').value;
+                
+                let resultHTML = '';
+                let mainResult = '';
+                
+                if (!distance || distance <= 0) {
+                    document.getElementById('fuel-result').textContent = 'Enter valid distance';
+                    document.getElementById('fuel-details').innerHTML = '';
+                    return;
+                }
+                
+                if (type === 'cost') {
+                    const efficiency = parseFloat(document.getElementById('efficiency').value);
+                    const fuelPrice = parseFloat(document.getElementById('fuel-price').value);
+                    const efficiencyUnit = document.getElementById('efficiency-unit').value;
+                    const priceUnit = document.getElementById('price-unit').value;
+                    
+                    if (!efficiency || efficiency <= 0 || !fuelPrice || fuelPrice <= 0) {
+                        document.getElementById('fuel-result').textContent = 'Enter valid values';
+                        document.getElementById('fuel-details').innerHTML = '';
+                        return;
+                    }
+                    
+                    const result = calculateFuelCost(distance, efficiency, fuelPrice, distanceUnit, efficiencyUnit, priceUnit);
+                    const currencySymbol = '$';
+                    
+                    mainResult = `${currencySymbol}${result.totalCost.toFixed(2)}`;
+                    resultHTML = `
+                        <div>Fuel Needed: <strong>${result.fuelNeeded.toFixed(2)} liters</strong></div>
+                        <div>Cost per km: <strong>${currencySymbol}${result.costPerKm.toFixed(3)}</strong></div>
+                        <div class="savings">Total Trip Cost: <strong>${currencySymbol}${result.totalCost.toFixed(2)}</strong></div>
+                    `;
+                    
+                } else if (type === 'consumption') {
+                    const fuelUsed = parseFloat(document.getElementById('fuel-used').value);
+                    const fuelUsedUnit = document.getElementById('fuel-used-unit').value;
+                    
+                    if (!fuelUsed || fuelUsed <= 0) {
+                        document.getElementById('fuel-result').textContent = 'Enter valid fuel used';
+                        document.getElementById('fuel-details').innerHTML = '';
+                        return;
+                    }
+                    
+                    const result = calculateFuelConsumption(distance, fuelUsed, distanceUnit, fuelUsedUnit);
+                    mainResult = `${result.l100km.toFixed(1)} L/100km`;
+                    resultHTML = `
+                        <div>Fuel Efficiency: <strong>${result.kmpl.toFixed(1)} km/L</strong></div>
+                        <div>Fuel Efficiency: <strong>${result.mpg.toFixed(1)} MPG</strong></div>
+                        <div class="savings">Consumption: <strong>${result.l100km.toFixed(1)} L/100km</strong></div>
+                    `;
+                    
+                } else if (type === 'mileage') {
+                    const efficiency = parseFloat(document.getElementById('efficiency').value);
+                    const efficiencyUnit = document.getElementById('efficiency-unit').value;
+                    
+                    if (!efficiency || efficiency <= 0) {
+                        document.getElementById('fuel-result').textContent = 'Enter valid efficiency';
+                        document.getElementById('fuel-details').innerHTML = '';
+                        return;
+                    }
+                    
+                    const result = calculateFuelMileage(distance, efficiency, distanceUnit, efficiencyUnit);
+                    mainResult = `${result.fuelNeeded.toFixed(1)} liters`;
+                    resultHTML = `
+                        <div>Efficiency: <strong>${result.efficiencyKmpl.toFixed(1)} km/L</strong></div>
+                        <div>Efficiency: <strong>${result.efficiencyMpg.toFixed(1)} MPG</strong></div>
+                        <div class="savings">Fuel Needed: <strong>${result.fuelNeeded.toFixed(1)} liters</strong></div>
+                    `;
+                }
+                
+                document.getElementById('fuel-result').textContent = mainResult;
+                document.getElementById('fuel-details').innerHTML = resultHTML;
+            }
+            
+            // ----------------------------
+            // 🔹 CALCULATE FUEL BUTTON
+            // ----------------------------
+            document.getElementById('calculate-fuel').addEventListener('click', function() {
+                updateFuelResult();
+            });
+            
+            // ----------------------------
+            // 🔹 UPDATE ON INPUT CHANGE
+            // ----------------------------
+            document.getElementById('distance').addEventListener('input', updateFuelResult);
+            document.getElementById('efficiency').addEventListener('input', updateFuelResult);
+            document.getElementById('fuel-price').addEventListener('input', updateFuelResult);
+            document.getElementById('fuel-used').addEventListener('input', updateFuelResult);
+            document.getElementById('distance-unit').addEventListener('change', updateFuelResult);
+            document.getElementById('efficiency-unit').addEventListener('change', updateFuelResult);
+            document.getElementById('price-unit').addEventListener('change', updateFuelResult);
+            document.getElementById('fuel-used-unit').addEventListener('change', updateFuelResult);
+            
+            // ----------------------------
+            // 🔹 QUICK TRIPS
+            // ----------------------------
+            function updateQuickTrips() {
+                const container = document.getElementById('quick-trips');
+                
+                container.innerHTML = '';
+                
+                const commonTrips = [
+                    { distance: 50, name: 'Daily Commute' },
+                    { distance: 100, name: 'Weekend Trip' },
+                    { distance: 200, name: 'Short Journey' },
+                    { distance: 500, name: 'Long Drive' },
+                    { distance: 1000, name: 'Road Trip' },
+                    { distance: 50, name: 'City Driving' },
+                    { distance: 300, name: 'State Border' },
+                    { distance: 800, name: 'Coast to Coast' }
+                ];
+                
+                commonTrips.forEach(trip => {
+                    const card = document.createElement('div');
+                    card.className = 'quick-card';
+                    card.innerHTML = `
+                        <div class="quick-distance">${trip.distance} km</div>
+                        <div class="quick-cost">${trip.name}</div>
+                    `;
+                    card.addEventListener('click', () => {
+                        document.getElementById('distance').value = trip.distance;
+                        updateFuelResult();
+                    });
+                    container.appendChild(card);
+                });
+            }
+            
+            // ----------------------------
+            // 🔹 INITIALIZE CALCULATOR
+            // ----------------------------
+            function initializeCalculator() {
+                console.log("Initializing fuel calculator...");
+                
+                // Set default values
+                document.getElementById('distance').value = 100;
+                document.getElementById('efficiency').value = 12;
+                document.getElementById('fuel-price').value = 1.2;
+                document.getElementById('fuel-used').value = 50;
+                document.getElementById('calculation-type').value = 'cost';
+                
+                // Perform initial calculation
+                updateFuelResult();
+                updateQuickTrips();
+                
+                console.log("Fuel calculator initialized successfully");
+            }
+            
+            // Initialize when page loads
+            initializeCalculator();
+
+            /* ------------------------------
+                🔹 FOOTER LINKS (FILTER CALCULATORS)
+            ------------------------------ */
+            const footerLinks = document.querySelectorAll(".footer-links-column a[data-category]");
+            const calcItems = document.querySelectorAll(".calc-list li");
+
+            if (footerLinks.length > 0 && calcItems.length > 0) {
+                footerLinks.forEach(link => {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const category = this.getAttribute("data-category");
+
+                        calcItems.forEach(item => {
+                            if (category === "all") {
+                                item.style.display = "block";
+                            } else if (item.getAttribute("data-category") === category) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

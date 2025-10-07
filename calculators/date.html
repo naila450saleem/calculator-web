@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculatorHub - Professional Calculation Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #4285f4;
+            --primary-red: #ea4335;
+            --primary-yellow: #fbbc05;
+            --primary-green: #34a853;
+            --light-gray: #f8f9fa;
+            --medium-gray: #dadce0;
+            --dark-gray: #5f6368;
+            --text-color: #202124;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Top Ad Banner */
+        .top-ad {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            text-align: center;
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+
+        .logo-text {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Underline animation */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Active link */
+        nav a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Hide toggle by default */
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Show toggle only on mobile */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .content-area {
+            flex: 3;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .calculator-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-header h1 {
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .calculator-header p {
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+        
+        /* Date Calculator Styles */
+        .date-calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary-blue);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--primary-blue);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .input-field {
+            flex: 1;
+        }
+        
+        .input-field input, .input-field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .input-field input:focus, .input-field select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 25px;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        .results {
+            margin-top: 25px;
+        }
+        
+        .result-card {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        .result-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        .date-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .date-info {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .date-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 8px 0;
+        }
+        
+        .date-text {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        /* Sidebar Styles */
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .sidebar-widget h3 {
+            color: var(--primary-blue);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .about-text {
+            color: var(--dark-gray);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .calc-list {
+            list-style: none;
+        }
+        
+        .calc-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            transition: background-color 0.2s;
+        }
+        
+        .calc-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .calc-list li:hover {
+            background-color: rgba(66, 133, 244, 0.05);
+            padding-left: 8px;
+            border-radius: 4px;
+        }
+        
+        .calc-list a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+        }
+        
+        .calc-list a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .calc-list i {
+            color: var(--primary-blue);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-ad {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: white;
+            padding: 50px 0 25px;
+            margin-top: 50px;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+        }
+        
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .footer-links-column h4 {
+            margin-bottom: 18px;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .footer-links-column ul {
+            list-style: none;
+        }
+        
+        .footer-links-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links-column a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .footer-links-column a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .header-ad {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .calculator-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 35px;
+            }
+            
+            .footer-links {
+                justify-content: flex-start;
+                gap: 50px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .top-ad {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+            
+            .input-row {
+                flex-direction: column;
+            }
+            
+            .calculator-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .date-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Ad Banner -->
+    <div class="top-ad">
+        <div class="container">
+            Advertisement Space - Top Banner (970x90)
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-calculator logo-icon"></i>
+                    <div class="logo-text">Calculator<span>Hub</span></div>
+                </div>
+
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+                <nav>
+                   <ul>
+                        <li><a href="../Home.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../calculators.html">All Calculators</a></li>
+                        <li><a href="../faq.html">FAQ's</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <div class="main-content">
+            <div class="content-area">
+                <!-- Calculator Header -->
+                <div class="calculator-header">
+                    <h1>Date Calculator</h1>
+                    <p>Calculate date differences, add/subtract days, and find specific dates with ease.</p>
+                </div>
+                
+                <!-- Date Calculator -->
+                <div class="date-calculator">
+                    <div class="calculator-tabs">
+                        <button class="tab-btn active" data-tab="date-difference">Date Difference</button>
+                        <button class="tab-btn" data-tab="add-subtract">Add/Subtract Days</button>
+                        <button class="tab-btn" data-tab="day-calculator">Day Calculator</button>
+                    </div>
+                    
+                    <!-- Date Difference Tab -->
+                    <div class="tab-content active" id="date-difference">
+                        <div class="input-row">
+                            <div class="input-field">
+                                <label for="start-date">Start Date</label>
+                                <input type="date" id="start-date" value="2023-01-01">
+                            </div>
+                            <div class="input-field">
+                                <label for="end-date">End Date</label>
+                                <input type="date" id="end-date" value="2023-12-31">
+                            </div>
+                        </div>
+                        
+                        <button class="calculate-btn" id="calculate-difference">Calculate Difference</button>
+                        
+                        <div class="results">
+                            <div class="result-card">
+                                <div class="result-value" id="total-days">-</div>
+                                <div class="result-label">Total Days</div>
+                            </div>
+                            
+                            <div class="date-grid">
+                                <div class="date-info">
+                                    <div class="date-number" id="years-diff">-</div>
+                                    <div class="date-text">Years</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="months-diff">-</div>
+                                    <div class="date-text">Months</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="weeks-diff">-</div>
+                                    <div class="date-text">Weeks</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="days-diff">-</div>
+                                    <div class="date-text">Days</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add/Subtract Days Tab -->
+                    <div class="tab-content" id="add-subtract">
+                        <div class="input-group">
+                            <label for="base-date">Start Date</label>
+                            <input type="date" id="base-date" value="2023-06-15">
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-field">
+                                <label for="days-to-add">Days to Add/Subtract</label>
+                                <input type="number" id="days-to-add" placeholder="Enter number of days" value="30">
+                            </div>
+                            <div class="input-field">
+                                <label for="operation">Operation</label>
+                                <select id="operation">
+                                    <option value="add">Add Days</option>
+                                    <option value="subtract">Subtract Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button class="calculate-btn" id="calculate-new-date">Calculate New Date</button>
+                        
+                        <div class="results">
+                            <div class="result-card">
+                                <div class="result-value" id="new-date">-</div>
+                                <div class="result-label">Result Date</div>
+                            </div>
+                            
+                            <div class="date-grid">
+                                <div class="date-info">
+                                    <div class="date-number" id="result-day">-</div>
+                                    <div class="date-text">Day of Week</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="result-days-left">-</div>
+                                    <div class="date-text">Days Left in Year</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="result-week">-</div>
+                                    <div class="date-text">Week Number</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="result-quarter">-</div>
+                                    <div class="date-text">Quarter</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Day Calculator Tab -->
+                    <div class="tab-content" id="day-calculator">
+                        <div class="input-group">
+                            <label for="target-date">Select Date</label>
+                            <input type="date" id="target-date" value="2023-12-25">
+                        </div>
+                        
+                        <button class="calculate-btn" id="calculate-day-info">Get Date Information</button>
+                        
+                        <div class="results">
+                            <div class="result-card">
+                                <div class="result-value" id="full-date">-</div>
+                                <div class="result-label">Full Date</div>
+                            </div>
+                            
+                            <div class="date-grid">
+                                <div class="date-info">
+                                    <div class="date-number" id="day-of-week">-</div>
+                                    <div class="date-text">Day of Week</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="day-of-year">-</div>
+                                    <div class="date-text">Day of Year</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="week-of-year">-</div>
+                                    <div class="date-text">Week of Year</div>
+                                </div>
+                                <div class="date-info">
+                                    <div class="date-number" id="days-in-month">-</div>
+                                    <div class="date-text">Days in Month</div>
+                                </div>
+                            </div>
+                            
+                            <div class="result-card" style="margin-top: 20px;">
+                                <div class="result-value" id="is-leap-year">-</div>
+                                <div class="result-label">Leap Year Status</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <div class="sidebar-ad" style="width:300px; height:600px; background:#f1f1f1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:14px; color:#555; border:1px solid #ddd;">
+                        Advertisement Space - Sidebar (300x600)
+                    </div>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>All Calculators</h3>
+                    <ul class="calc-list">
+                        <!-- Basic -->
+                        <li data-category="basic"><a href="#"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
+
+                        <!-- Conversion -->
+                        <li data-category="conversion"><a href="#"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-money-bill-wave"></i> Currency Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-cube"></i> Volume Calculator</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-tachometer-alt"></i> Speed Calculator</a></li>
+
+                        <!-- Health -->
+                        <li data-category="health"><a href="#"><i class="fas fa-weight"></i> BMI Calculator</a></li>
+                        <li data-category="health"><a href="#"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
+                        <li data-category="health"><a href="#"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
+
+                        <!-- Financial -->
+                        <li data-category="financial"><a href="#"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-tags"></i> Discount Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-gas-pump"></i> Fuel Cost Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-piggy-bank"></i> Savings Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-utensils"></i> Tip Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <i class="fas fa-calculator logo-icon"></i>
+                        <div class="logo-text">Calculator<span>Hub</span></div>
+                    </div>
+                    <p class="about-text" style="margin-top: 18px;">
+                        Your professional calculation companion. Accurate, reliable, and free tools for all your calculation needs.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Calculators</h4>
+                        <ul>
+                            <li><a href="#" data-category="all">All Calculators</a></li>
+                            <li><a href="#" data-category="basic">Basic Calculator</a></li>
+                            <li><a href="#" data-category="financial">Financial Calculators</a></li>
+                            <li><a href="#" data-category="health">Health Calculators</a></li>
+                            <li><a href="#" data-category="conversion">Conversion Tools</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="sitemap.html">Sitemap</a></li>
+                            <li><a href="help.html">Help Center</a></li>
+                            <li><a href="feedback.html">Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 CalculatorHub. All rights reserved. | Professional Calculation Tools
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ----------------------------
+            // 🔹 Mobile Menu Toggle
+            // ----------------------------
+            const toggleBtn = document.querySelector(".menu-toggle i");
+            const navMenu = document.querySelector("nav ul");
+
+            if (toggleBtn && navMenu) {
+                toggleBtn.parentElement.addEventListener("click", () => {
+                    navMenu.classList.toggle("show");
+                    if (navMenu.classList.contains("show")) {
+                        toggleBtn.classList.remove("fa-bars");
+                        toggleBtn.classList.add("fa-times");
+                    } else {
+                        toggleBtn.classList.remove("fa-times");
+                        toggleBtn.classList.add("fa-bars");
+                    }
+                });
+            }
+
+            // ----------------------------
+            // 🔹 Active Link Highlight
+            // ----------------------------
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active");
+                }
+            });
+
+            // ----------------------------
+            // 🔹 Tab Functionality
+            // ----------------------------
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    btn.classList.add('active');
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // ----------------------------
+            // 🔹 Date Difference Calculator
+            // ----------------------------
+            document.getElementById('calculate-difference').addEventListener('click', function() {
+                const startDate = new Date(document.getElementById('start-date').value);
+                const endDate = new Date(document.getElementById('end-date').value);
+                
+                if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+                    alert('Please select valid dates');
+                    return;
+                }
+                
+                // Calculate difference in milliseconds
+                const diffTime = Math.abs(endDate - startDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                // Calculate years, months, weeks
+                let years = endDate.getFullYear() - startDate.getFullYear();
+                let months = endDate.getMonth() - startDate.getMonth();
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+                
+                let days = endDate.getDate() - startDate.getDate();
+                if (days < 0) {
+                    months--;
+                    // Get days in previous month
+                    const prevMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
+                    days += prevMonth.getDate();
+                }
+                
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+                
+                const weeks = Math.floor(diffDays / 7);
+                
+                // Display results
+                document.getElementById('total-days').textContent = diffDays.toLocaleString() + ' days';
+                document.getElementById('years-diff').textContent = years;
+                document.getElementById('months-diff').textContent = months;
+                document.getElementById('weeks-diff').textContent = weeks;
+                document.getElementById('days-diff').textContent = diffDays % 7;
+            });
+            
+            // ----------------------------
+            // 🔹 Add/Subtract Days Calculator
+            // ----------------------------
+            document.getElementById('calculate-new-date').addEventListener('click', function() {
+                const baseDate = new Date(document.getElementById('base-date').value);
+                const daysToAdd = parseInt(document.getElementById('days-to-add').value) || 0;
+                const operation = document.getElementById('operation').value;
+                
+                if (isNaN(baseDate.getTime())) {
+                    alert('Please select a valid date');
+                    return;
+                }
+                
+                // Calculate new date
+                const newDate = new Date(baseDate);
+                if (operation === 'add') {
+                    newDate.setDate(newDate.getDate() + daysToAdd);
+                } else {
+                    newDate.setDate(newDate.getDate() - daysToAdd);
+                }
+                
+                // Format date for display
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('new-date').textContent = newDate.toLocaleDateString('en-US', options);
+                
+                // Calculate additional information
+                const dayOfWeek = newDate.toLocaleDateString('en-US', { weekday: 'long' });
+                document.getElementById('result-day').textContent = dayOfWeek;
+                
+                // Calculate days left in year
+                const endOfYear = new Date(newDate.getFullYear(), 11, 31);
+                const daysLeft = Math.ceil((endOfYear - newDate) / (1000 * 60 * 60 * 24));
+                document.getElementById('result-days-left').textContent = daysLeft;
+                
+                // Calculate week number
+                const firstDayOfYear = new Date(newDate.getFullYear(), 0, 1);
+                const pastDaysOfYear = (newDate - firstDayOfYear) / 86400000;
+                const weekNumber = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+                document.getElementById('result-week').textContent = weekNumber;
+                
+                // Calculate quarter
+                const quarter = Math.floor((newDate.getMonth() / 3)) + 1;
+                document.getElementById('result-quarter').textContent = 'Q' + quarter;
+            });
+            
+            // ----------------------------
+            // 🔹 Day Calculator
+            // ----------------------------
+            document.getElementById('calculate-day-info').addEventListener('click', function() {
+                const targetDate = new Date(document.getElementById('target-date').value);
+                
+                if (isNaN(targetDate.getTime())) {
+                    alert('Please select a valid date');
+                    return;
+                }
+                
+                // Format full date
+                const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+                document.getElementById('full-date').textContent = targetDate.toLocaleDateString('en-US', options);
+                
+                // Day of week
+                const dayOfWeek = targetDate.toLocaleDateString('en-US', { weekday: 'long' });
+                document.getElementById('day-of-week').textContent = dayOfWeek;
+                
+                // Day of year
+                const startOfYear = new Date(targetDate.getFullYear(), 0, 0);
+                const diff = targetDate - startOfYear;
+                const oneDay = 1000 * 60 * 60 * 24;
+                const dayOfYear = Math.floor(diff / oneDay);
+                document.getElementById('day-of-year').textContent = dayOfYear;
+                
+                // Week of year
+                const firstDayOfYear = new Date(targetDate.getFullYear(), 0, 1);
+                const pastDaysOfYear = (targetDate - firstDayOfYear) / 86400000;
+                const weekOfYear = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+                document.getElementById('week-of-year').textContent = weekOfYear;
+                
+                // Days in month
+                const daysInMonth = new Date(targetDate.getFullYear(), targetDate.getMonth() + 1, 0).getDate();
+                document.getElementById('days-in-month').textContent = daysInMonth;
+                
+                // Leap year check
+                const isLeapYear = (targetDate.getFullYear() % 4 === 0 && targetDate.getFullYear() % 100 !== 0) || 
+                                  (targetDate.getFullYear() % 400 === 0);
+                document.getElementById('is-leap-year').textContent = isLeapYear ? 'Leap Year' : 'Not a Leap Year';
+            });
+            
+            // ----------------------------
+            // 🔹 Initialize with current calculations
+            // ----------------------------
+            document.getElementById('calculate-difference').click();
+            document.getElementById('calculate-new-date').click();
+            document.getElementById('calculate-day-info').click();
+
+            /* ------------------------------
+                🔹 Animations on Page Load
+            ------------------------------ */
+            document.querySelectorAll(".calc-box").forEach((box, index) => {
+                box.style.opacity = "0";
+                box.style.transform = "translateY(20px)";
+
+                setTimeout(() => {
+                    box.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                    box.style.opacity = "1";
+                    box.style.transform = "translateY(0)";
+                }, index * 100);
+            });
+
+            /* ------------------------------
+                🔹 Footer Links (Filter Calculators)
+            ------------------------------ */
+            const footerLinks = document.querySelectorAll(".footer-links-column a[data-category]");
+            const calcItems = document.querySelectorAll(".calc-list li");
+
+            if (footerLinks.length > 0 && calcItems.length > 0) {
+                footerLinks.forEach(link => {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const category = this.getAttribute("data-category");
+
+                        calcItems.forEach(item => {
+                            if (category === "all") {
+                                item.style.display = "block";
+                            } else if (item.getAttribute("data-category") === category) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

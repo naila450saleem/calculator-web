@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculatorHub - Professional Calculation Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #4285f4;
+            --primary-red: #ea4335;
+            --primary-yellow: #fbbc05;
+            --primary-green: #34a853;
+            --light-gray: #f8f9fa;
+            --medium-gray: #dadce0;
+            --dark-gray: #5f6368;
+            --text-color: #202124;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Top Ad Banner */
+        .top-ad {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            text-align: center;
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+
+        .logo-text {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Underline animation */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Active link */
+        nav a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Hide toggle by default */
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Show toggle only on mobile */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .content-area {
+            flex: 3;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .calculator-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-header h1 {
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .calculator-header p {
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+        
+        /* Calories Calculator Styles */
+        .calories-calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary-blue);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--primary-blue);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .input-field {
+            flex: 1;
+        }
+        
+        .input-field input, .input-field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .input-field input:focus, .input-field select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .radio-option input {
+            margin: 0;
+        }
+        
+        .activity-levels {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .activity-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .activity-option:hover {
+            border-color: var(--primary-blue);
+        }
+        
+        .activity-option.active {
+            border-color: var(--primary-blue);
+            background-color: rgba(66, 133, 244, 0.05);
+        }
+        
+        .activity-option input {
+            margin-right: 10px;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 25px;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        .results {
+            margin-top: 25px;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .result-card {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        .result-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary-blue);
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        .calorie-info {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(66, 133, 244, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .calorie-info h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+        
+        .food-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .food-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .food-calories {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-red);
+            margin: 5px 0;
+        }
+        
+        .food-name {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        /* Sidebar Styles */
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .sidebar-widget h3 {
+            color: var(--primary-blue);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .about-text {
+            color: var(--dark-gray);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .calc-list {
+            list-style: none;
+        }
+        
+        .calc-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            transition: background-color 0.2s;
+        }
+        
+        .calc-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .calc-list li:hover {
+            background-color: rgba(66, 133, 244, 0.05);
+            padding-left: 8px;
+            border-radius: 4px;
+        }
+        
+        .calc-list a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+        }
+        
+        .calc-list a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .calc-list i {
+            color: var(--primary-blue);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-ad {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: white;
+            padding: 50px 0 25px;
+            margin-top: 50px;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+        }
+        
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .footer-links-column h4 {
+            margin-bottom: 18px;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .footer-links-column ul {
+            list-style: none;
+        }
+        
+        .footer-links-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links-column a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .footer-links-column a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .header-ad {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .calculator-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 35px;
+            }
+            
+            .footer-links {
+                justify-content: flex-start;
+                gap: 50px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .top-ad {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+            
+            .input-row {
+                flex-direction: column;
+            }
+            
+            .calculator-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .food-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Ad Banner -->
+    <div class="top-ad">
+        <div class="container">
+            Advertisement Space - Top Banner (970x90)
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-calculator logo-icon"></i>
+                    <div class="logo-text">Calculator<span>Hub</span></div>
+                </div>
+
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+                <nav>
+                    <ul>
+                        <li><a href="../Home.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../calculators.html">All Calculators</a></li>
+                        <li><a href="../faq.html">FAQ's</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <div class="main-content">
+            <div class="content-area">
+                <!-- Calculator Header -->
+                <div class="calculator-header">
+                    <h1>Calories Calculator</h1>
+                    <p>Calculate your daily calorie needs and learn about calorie content in common foods.</p>
+                </div>
+                
+                <!-- Calories Calculator -->
+                <div class="calories-calculator">
+                    <div class="calculator-tabs">
+                        <button class="tab-btn active" data-tab="calorie-needs">Daily Calorie Needs</button>
+                        <button class="tab-btn" data-tab="food-calories">Food Calories</button>
+                        <button class="tab-btn" data-tab="bmr-calculator">BMR Calculator</button>
+                    </div>
+                    
+                    <!-- Daily Calorie Needs Tab -->
+                    <div class="tab-content active" id="calorie-needs">
+                        <div class="input-group">
+                            <label>Gender:</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="male" name="gender" value="male" checked>
+                                    <label for="male">Male</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label for="female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-field">
+                                <label for="age">Age (years)</label>
+                                <input type="number" id="age" placeholder="Enter your age" min="15" max="100">
+                            </div>
+                            <div class="input-field">
+                                <label for="weight">Weight (kg)</label>
+                                <input type="number" id="weight" placeholder="Enter your weight" min="30" max="200">
+                            </div>
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-field">
+                                <label for="height">Height (cm)</label>
+                                <input type="number" id="height" placeholder="Enter your height" min="100" max="250">
+                            </div>
+                            <div class="input-field">
+                                <label for="goal">Your Goal</label>
+                                <select id="goal">
+                                    <option value="maintain">Maintain Weight</option>
+                                    <option value="lose">Lose Weight</option>
+                                    <option value="gain">Gain Weight</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Activity Level:</label>
+                            <div class="activity-levels">
+                                <div class="activity-option active">
+                                    <input type="radio" id="sedentary" name="activity" value="1.2" checked>
+                                    <label for="sedentary">Sedentary (little or no exercise)</label>
+                                </div>
+                                <div class="activity-option">
+                                    <input type="radio" id="light" name="activity" value="1.375">
+                                    <label for="light">Lightly active (light exercise 1-3 days/week)</label>
+                                </div>
+                                <div class="activity-option">
+                                    <input type="radio" id="moderate" name="activity" value="1.55">
+                                    <label for="moderate">Moderately active (moderate exercise 3-5 days/week)</label>
+                                </div>
+                                <div class="activity-option">
+                                    <input type="radio" id="active" name="activity" value="1.725">
+                                    <label for="active">Very active (hard exercise 6-7 days/week)</label>
+                                </div>
+                                <div class="activity-option">
+                                    <input type="radio" id="extra" name="activity" value="1.9">
+                                    <label for="extra">Extra active (very hard exercise & physical job)</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="calculate-btn" id="calculate-calories">Calculate My Calories</button>
+                        
+                        <div class="results">
+                            <h3>Your Daily Calorie Needs</h3>
+                            <div class="result-grid">
+                                <div class="result-card">
+                                    <div class="result-label">Basal Metabolic Rate (BMR)</div>
+                                    <div class="result-value" id="bmr-result">-</div>
+                                    <div class="result-label">Calories at rest</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="result-label">Maintenance Calories</div>
+                                    <div class="result-value" id="maintenance-result">-</div>
+                                    <div class="result-label">To maintain weight</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="result-label">Weight Loss</div>
+                                    <div class="result-value" id="loss-result">-</div>
+                                    <div class="result-label">To lose 0.5kg/week</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="result-label">Weight Gain</div>
+                                    <div class="result-value" id="gain-result">-</div>
+                                    <div class="result-label">To gain 0.5kg/week</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Food Calories Tab -->
+                    <div class="tab-content" id="food-calories">
+                        <div class="input-group">
+                            <label>Select Food Category:</label>
+                            <select id="food-category">
+                                <option value="fruits">Fruits</option>
+                                <option value="vegetables">Vegetables</option>
+                                <option value="grains">Grains & Cereals</option>
+                                <option value="protein">Protein Foods</option>
+                                <option value="dairy">Dairy & Eggs</option>
+                                <option value="snacks">Snacks & Sweets</option>
+                            </select>
+                        </div>
+                        
+                        <div class="food-items" id="food-items-container">
+                            <!-- Food items will be populated here -->
+                        </div>
+                        
+                        <div class="calorie-info">
+                            <h3>Understanding Food Calories</h3>
+                            <p>Calories are a measure of energy. The average adult needs about 2000-2500 calories per day to maintain their weight, but this varies based on age, gender, weight, height, and activity level.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- BMR Calculator Tab -->
+                    <div class="tab-content" id="bmr-calculator">
+                        <div class="input-group">
+                            <label>Gender:</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="bmr-male" name="bmr-gender" value="male" checked>
+                                    <label for="bmr-male">Male</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="bmr-female" name="bmr-gender" value="female">
+                                    <label for="bmr-female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-field">
+                                <label for="bmr-age">Age (years)</label>
+                                <input type="number" id="bmr-age" placeholder="Enter your age" min="15" max="100">
+                            </div>
+                            <div class="input-field">
+                                <label for="bmr-weight">Weight (kg)</label>
+                                <input type="number" id="bmr-weight" placeholder="Enter your weight" min="30" max="200">
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="bmr-height">Height (cm)</label>
+                            <input type="number" id="bmr-height" placeholder="Enter your height" min="100" max="250">
+                        </div>
+                        
+                        <button class="calculate-btn" id="calculate-bmr">Calculate BMR</button>
+                        
+                        <div class="results">
+                            <h3>Your Basal Metabolic Rate (BMR)</h3>
+                            <div class="result-card" style="max-width: 300px; margin: 0 auto;">
+                                <div class="result-label">Basal Metabolic Rate</div>
+                                <div class="result-value" id="bmr-only-result">-</div>
+                                <div class="result-label">Calories your body needs at rest</div>
+                            </div>
+                            
+                            <div class="calorie-info">
+                                <h3>What is BMR?</h3>
+                                <p>Basal Metabolic Rate (BMR) is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions at complete rest. This includes breathing, circulation, cell production, and nutrient processing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <div class="sidebar-ad" style="width:300px; height:600px; background:#f1f1f1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:14px; color:#555; border:1px solid #ddd;">
+                        Advertisement Space - Sidebar (300x600)
+                    </div>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>All Calculators</h3>
+                    <ul class="calc-list">
+                        <!-- Basic -->
+                        <li data-category="basic"><a href="#"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
+
+                        <!-- Conversion -->
+                        <li data-category="conversion"><a href="#"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-money-bill-wave"></i> Currency Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-cube"></i> Volume Calculator</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-tachometer-alt"></i> Speed Calculator</a></li>
+
+                        <!-- Health -->
+                        <li data-category="health"><a href="#"><i class="fas fa-weight"></i> BMI Calculator</a></li>
+                        <li data-category="health"><a href="#"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
+                        <li data-category="health"><a href="#"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
+
+                        <!-- Financial -->
+                        <li data-category="financial"><a href="#"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-tags"></i> Discount Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-gas-pump"></i> Fuel Cost Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-piggy-bank"></i> Savings Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-utensils"></i> Tip Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <i class="fas fa-calculator logo-icon"></i>
+                        <div class="logo-text">Calculator<span>Hub</span></div>
+                    </div>
+                    <p class="about-text" style="margin-top: 18px;">
+                        Your professional calculation companion. Accurate, reliable, and free tools for all your calculation needs.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Calculators</h4>
+                        <ul>
+                            <li><a href="#" data-category="all">All Calculators</a></li>
+                            <li><a href="#" data-category="basic">Basic Calculator</a></li>
+                            <li><a href="#" data-category="financial">Financial Calculators</a></li>
+                            <li><a href="#" data-category="health">Health Calculators</a></li>
+                            <li><a href="#" data-category="conversion">Conversion Tools</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="sitemap.html">Sitemap</a></li>
+                            <li><a href="help.html">Help Center</a></li>
+                            <li><a href="feedback.html">Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 CalculatorHub. All rights reserved. | Professional Calculation Tools
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ----------------------------
+            // 🔹 Mobile Menu Toggle
+            // ----------------------------
+            const toggleBtn = document.querySelector(".menu-toggle i");
+            const navMenu = document.querySelector("nav ul");
+
+            if (toggleBtn && navMenu) {
+                toggleBtn.parentElement.addEventListener("click", () => {
+                    navMenu.classList.toggle("show");
+                    if (navMenu.classList.contains("show")) {
+                        toggleBtn.classList.remove("fa-bars");
+                        toggleBtn.classList.add("fa-times");
+                    } else {
+                        toggleBtn.classList.remove("fa-times");
+                        toggleBtn.classList.add("fa-bars");
+                    }
+                });
+            }
+
+            // ----------------------------
+            // 🔹 Active Link Highlight
+            // ----------------------------
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active");
+                }
+            });
+
+            // ----------------------------
+            // 🔹 Tab Functionality
+            // ----------------------------
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    btn.classList.add('active');
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // If food calories tab is selected, load food items
+                    if (tabId === 'food-calories') {
+                        loadFoodItems();
+                    }
+                });
+            });
+            
+            // ----------------------------
+            // 🔹 Activity Level Selection
+            // ----------------------------
+            const activityOptions = document.querySelectorAll('.activity-option');
+            
+            activityOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    activityOptions.forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    const radio = this.querySelector('input');
+                    radio.checked = true;
+                });
+            });
+            
+            // ----------------------------
+            // 🔹 Food Data
+            // ----------------------------
+            const foodData = {
+                fruits: [
+                    { name: "Apple", calories: 95 },
+                    { name: "Banana", calories: 105 },
+                    { name: "Orange", calories: 62 },
+                    { name: "Strawberries (1 cup)", calories: 49 },
+                    { name: "Grapes (1 cup)", calories: 104 },
+                    { name: "Watermelon (1 cup)", calories: 46 }
+                ],
+                vegetables: [
+                    { name: "Broccoli (1 cup)", calories: 55 },
+                    { name: "Carrot (medium)", calories: 25 },
+                    { name: "Spinach (1 cup)", calories: 7 },
+                    { name: "Potato (medium)", calories: 161 },
+                    { name: "Tomato (medium)", calories: 22 },
+                    { name: "Cucumber (medium)", calories: 45 }
+                ],
+                grains: [
+                    { name: "White Bread (slice)", calories: 79 },
+                    { name: "Brown Rice (1 cup)", calories: 216 },
+                    { name: "Oatmeal (1 cup)", calories: 166 },
+                    { name: "Pasta (1 cup)", calories: 221 },
+                    { name: "Quinoa (1 cup)", calories: 222 },
+                    { name: "Cereal (1 cup)", calories: 120 }
+                ],
+                protein: [
+                    { name: "Chicken Breast (100g)", calories: 165 },
+                    { name: "Salmon (100g)", calories: 206 },
+                    { name: "Egg (large)", calories: 78 },
+                    { name: "Beef Steak (100g)", calories: 271 },
+                    { name: "Tofu (100g)", calories: 76 },
+                    { name: "Lentils (1 cup)", calories: 230 }
+                ],
+                dairy: [
+                    { name: "Milk (1 cup)", calories: 149 },
+                    { name: "Yogurt (1 cup)", calories: 149 },
+                    { name: "Cheese (slice)", calories: 113 },
+                    { name: "Butter (tbsp)", calories: 102 },
+                    { name: "Ice Cream (1/2 cup)", calories: 137 },
+                    { name: "Cottage Cheese (1 cup)", calories: 163 }
+                ],
+                snacks: [
+                    { name: "Chocolate Bar", calories: 250 },
+                    { name: "Potato Chips (1 oz)", calories: 152 },
+                    { name: "Cookies (2)", calories: 140 },
+                    { name: "Soda (12 oz)", calories: 150 },
+                    { name: "Nuts (1/4 cup)", calories: 170 },
+                    { name: "Popcorn (1 cup)", calories: 31 }
+                ]
+            };
+            
+            // ----------------------------
+            // 🔹 Load Food Items
+            // ----------------------------
+            function loadFoodItems() {
+                const category = document.getElementById('food-category').value;
+                const container = document.getElementById('food-items-container');
+                
+                container.innerHTML = '';
+                
+                foodData[category].forEach(food => {
+                    const foodItem = document.createElement('div');
+                    foodItem.className = 'food-item';
+                    foodItem.innerHTML = `
+                        <div class="food-calories">${food.calories}</div>
+                        <div class="food-name">${food.name}</div>
+                    `;
+                    container.appendChild(foodItem);
+                });
+            }
+            
+            // Load initial food items
+            loadFoodItems();
+            
+            // Update food items when category changes
+            document.getElementById('food-category').addEventListener('change', loadFoodItems);
+            
+            // ----------------------------
+            // 🔹 Calculate BMR (Mifflin-St Jeor Equation)
+            // ----------------------------
+            function calculateBMR(weight, height, age, gender) {
+                if (gender === 'male') {
+                    return 10 * weight + 6.25 * height - 5 * age + 5;
+                } else {
+                    return 10 * weight + 6.25 * height - 5 * age - 161;
+                }
+            }
+            
+            // ----------------------------
+            // 🔹 Daily Calorie Needs Calculator
+            // ----------------------------
+            document.getElementById('calculate-calories').addEventListener('click', function() {
+                // Get input values
+                const gender = document.querySelector('input[name="gender"]:checked').value;
+                const age = parseInt(document.getElementById('age').value);
+                const weight = parseFloat(document.getElementById('weight').value);
+                const height = parseFloat(document.getElementById('height').value);
+                const activity = parseFloat(document.querySelector('input[name="activity"]:checked').value);
+                const goal = document.getElementById('goal').value;
+                
+                // Validate inputs
+                if (!age || !weight || !height) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                // Calculate BMR
+                const bmr = calculateBMR(weight, height, age, gender);
+                
+                // Calculate maintenance calories
+                const maintenance = Math.round(bmr * activity);
+                
+                // Calculate goal-based calories
+                let lossCalories, gainCalories;
+                
+                if (goal === 'lose') {
+                    lossCalories = maintenance - 500;
+                    gainCalories = maintenance + 250;
+                } else if (goal === 'gain') {
+                    lossCalories = maintenance - 250;
+                    gainCalories = maintenance + 500;
+                } else {
+                    lossCalories = maintenance - 500;
+                    gainCalories = maintenance + 500;
+                }
+                
+                // Display results
+                document.getElementById('bmr-result').textContent = Math.round(bmr);
+                document.getElementById('maintenance-result').textContent = maintenance;
+                document.getElementById('loss-result').textContent = lossCalories;
+                document.getElementById('gain-result').textContent = gainCalories;
+            });
+            
+            // ----------------------------
+            // 🔹 BMR Calculator
+            // ----------------------------
+            document.getElementById('calculate-bmr').addEventListener('click', function() {
+                // Get input values
+                const gender = document.querySelector('input[name="bmr-gender"]:checked').value;
+                const age = parseInt(document.getElementById('bmr-age').value);
+                const weight = parseFloat(document.getElementById('bmr-weight').value);
+                const height = parseFloat(document.getElementById('bmr-height').value);
+                
+                // Validate inputs
+                if (!age || !weight || !height) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                // Calculate BMR
+                const bmr = calculateBMR(weight, height, age, gender);
+                
+                // Display result
+                document.getElementById('bmr-only-result').textContent = Math.round(bmr);
+            });
+
+            /* ------------------------------
+                🔹 Animations on Page Load
+            ------------------------------ */
+            document.querySelectorAll(".calc-box").forEach((box, index) => {
+                box.style.opacity = "0";
+                box.style.transform = "translateY(20px)";
+
+                setTimeout(() => {
+                    box.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                    box.style.opacity = "1";
+                    box.style.transform = "translateY(0)";
+                }, index * 100);
+            });
+
+            /* ------------------------------
+                🔹 Footer Links (Filter Calculators)
+            ------------------------------ */
+            const footerLinks = document.querySelectorAll(".footer-links-column a[data-category]");
+            const calcItems = document.querySelectorAll(".calc-list li");
+
+            if (footerLinks.length > 0 && calcItems.length > 0) {
+                footerLinks.forEach(link => {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const category = this.getAttribute("data-category");
+
+                        calcItems.forEach(item => {
+                            if (category === "all") {
+                                item.style.display = "block";
+                            } else if (item.getAttribute("data-category") === category) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculatorHub - Fraction Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #4285f4;
+            --primary-red: #ea4335;
+            --primary-yellow: #fbbc05;
+            --primary-green: #34a853;
+            --light-gray: #f8f9fa;
+            --medium-gray: #dadce0;
+            --dark-gray: #5f6368;
+            --text-color: #202124;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Top Ad Banner */
+        .top-ad {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            text-align: center;
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+
+        .logo-text {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Underline animation */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Active link */
+        nav a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* Hide toggle by default */
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Show toggle only on mobile */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .content-area {
+            flex: 3;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .calculator-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-header h1 {
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .calculator-header p {
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+        
+        /* Fraction Calculator Styles */
+        .fraction-calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 0;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .fraction-inputs {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .fraction-part {
+            flex: 1;
+        }
+        
+        .fraction-part input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .fraction-part input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .fraction-separator {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--dark-gray);
+            padding: 0 10px;
+        }
+        
+        .operation-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .operation-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 20px 0;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        .result-box {
+            background-color: var(--light-gray);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .result-fraction {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary-green);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .fraction-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .fraction-numerator {
+            border-bottom: 2px solid var(--text-color);
+            padding: 0 15px;
+            font-size: 24px;
+        }
+        
+        .fraction-denominator {
+            padding: 0 15px;
+            font-size: 24px;
+        }
+        
+        .result-details {
+            color: var(--dark-gray);
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: left;
+        }
+        
+        .result-details div {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .result-details .decimal {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        .quick-calculations {
+            margin-top: 30px;
+        }
+        
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .quick-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--medium-gray);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .quick-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .quick-fraction {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        
+        .quick-decimal {
+            font-size: 14px;
+            color: var(--primary-blue);
+        }
+        
+        /* Sidebar Styles */
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .sidebar-widget h3 {
+            color: var(--primary-blue);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .about-text {
+            color: var(--dark-gray);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .calc-list {
+            list-style: none;
+        }
+        
+        .calc-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            transition: background-color 0.2s;
+        }
+        
+        .calc-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .calc-list li:hover {
+            background-color: rgba(66, 133, 244, 0.05);
+            padding-left: 8px;
+            border-radius: 4px;
+        }
+        
+        .calc-list a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+        }
+        
+        .calc-list a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .calc-list i {
+            color: var(--primary-blue);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-ad {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: white;
+            padding: 50px 0 25px;
+            margin-top: 50px;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+        }
+        
+        .footer-links {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .footer-links-column h4 {
+            margin-bottom: 18px;
+            color: var(--primary-blue);
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .footer-links-column ul {
+            list-style: none;
+        }
+        
+        .footer-links-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links-column a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        
+        .footer-links-column a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .header-ad {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .calculator-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 35px;
+            }
+            
+            .footer-links {
+                justify-content: flex-start;
+                gap: 50px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .top-ad {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+            
+            .fraction-inputs {
+                flex-direction: column;
+            }
+            
+            .fraction-separator {
+                padding: 10px 0;
+                transform: rotate(90deg);
+            }
+            
+            .quick-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .result-fraction {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .result-fraction {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Ad Banner -->
+    <div class="top-ad">
+        <div class="container">
+            Advertisement Space - Top Banner (970x90)
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-calculator logo-icon"></i>
+                    <div class="logo-text">Calculator<span>Hub</span></div>
+                </div>
+
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+                <nav>
+                    <ul>
+                        <li><a href="../Home.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../calculators.html">All Calculators</a></li>
+                        <li><a href="../faq.html">FAQ's</a></li>
+                        <li><a href="../contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <div class="main-content">
+            <div class="content-area">
+                <!-- Calculator Header -->
+                <div class="calculator-header">
+                    <h1>Fraction Calculator</h1>
+                    <p>Perform operations with fractions and get results in fraction and decimal form</p>
+                </div>
+                
+                <!-- Fraction Calculator -->
+                <div class="fraction-calculator">
+                    <div class="calculator-box">
+                        <!-- First Fraction -->
+                        <div class="input-group">
+                            <label>First Fraction:</label>
+                            <div class="fraction-inputs">
+                                <div class="fraction-part">
+                                    <input type="number" id="num1" placeholder="Numerator" min="-999" max="999" value="1">
+                                </div>
+                                <div class="fraction-separator">/</div>
+                                <div class="fraction-part">
+                                    <input type="number" id="den1" placeholder="Denominator" min="1" max="999" value="2">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Operation Selection -->
+                        <div class="input-group">
+                            <label>Operation:</label>
+                            <select class="operation-select" id="operation">
+                                <option value="add">Addition (+)</option>
+                                <option value="subtract">Subtraction (-)</option>
+                                <option value="multiply">Multiplication (×)</option>
+                                <option value="divide">Division (÷)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Second Fraction -->
+                        <div class="input-group">
+                            <label>Second Fraction:</label>
+                            <div class="fraction-inputs">
+                                <div class="fraction-part">
+                                    <input type="number" id="num2" placeholder="Numerator" min="-999" max="999" value="1">
+                                </div>
+                                <div class="fraction-separator">/</div>
+                                <div class="fraction-part">
+                                    <input type="number" id="den2" placeholder="Denominator" min="1" max="999" value="3">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Calculate Button -->
+                        <button class="calculate-btn" id="calculate-fraction">
+                            <i class="fas fa-equals"></i> Calculate
+                        </button>
+                        
+                        <!-- Result Display -->
+                        <div class="result-box">
+                            <div class="result-fraction" id="fraction-result">
+                                <div class="fraction-display">
+                                    <div class="fraction-numerator" id="result-num">-</div>
+                                    <div class="fraction-denominator" id="result-den">-</div>
+                                </div>
+                            </div>
+                            <div class="result-details">
+                                <div>
+                                    <span>Decimal Result:</span>
+                                    <span class="decimal" id="decimal-result">-</span>
+                                </div>
+                                <div>
+                                    <span>Simplified Form:</span>
+                                    <span id="simplified-result">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Calculations -->
+                    <div class="quick-calculations">
+                        <h3>Common Fractions</h3>
+                        <div class="quick-grid" id="quick-fractions">
+                            <!-- Quick fractions will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <div class="sidebar-ad" style="width:300px; height:600px; background:#f1f1f1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:14px; color:#555; border:1px solid #ddd;">
+                        Advertisement Space - Sidebar (300x600)
+                    </div>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>All Calculators</h3>
+                    <ul class="calc-list">
+                        <!-- Basic -->
+                        <li data-category="basic"><a href="#"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
+                        <li data-category="basic"><a href="#"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
+
+                        <!-- Conversion -->
+                        <li data-category="conversion"><a href="#"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-money-bill-wave"></i> Currency Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
+                        <li data-category="conversion"><a href="#"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
+
+                        <!-- Health -->
+                        <li data-category="health"><a href="#"><i class="fas fa-weight"></i> BMI Calculator</a></li>
+                        <li data-category="health"><a href="#"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
+                        <li data-category="health"><a href="#"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
+
+                        <!-- Financial -->
+                        <li data-category="financial"><a href="#"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-tags"></i> Discount Calculator</a></li>
+                        <li data-category="financial"><a href="#"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <i class="fas fa-calculator logo-icon"></i>
+                        <div class="logo-text">Calculator<span>Hub</span></div>
+                    </div>
+                    <p class="about-text" style="margin-top: 18px;">
+                        Your professional calculation companion. Accurate, reliable, and free tools for all your calculation needs.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Calculators</h4>
+                        <ul>
+                            <li><a href="#" data-category="all">All Calculators</a></li>
+                            <li><a href="#" data-category="basic">Basic Calculator</a></li>
+                            <li><a href="#" data-category="financial">Financial Calculators</a></li>
+                            <li><a href="#" data-category="health">Health Calculators</a></li>
+                            <li><a href="#" data-category="conversion">Conversion Tools</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="sitemap.html">Sitemap</a></li>
+                            <li><a href="help.html">Help Center</a></li>
+                            <li><a href="feedback.html">Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 CalculatorHub. All rights reserved. | Professional Calculation Tools
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ----------------------------
+            // 🔹 Mobile Menu Toggle
+            // ----------------------------
+            const toggleBtn = document.querySelector(".menu-toggle i");
+            const navMenu = document.querySelector("nav ul");
+
+            if (toggleBtn && navMenu) {
+                toggleBtn.parentElement.addEventListener("click", () => {
+                    navMenu.classList.toggle("show");
+                    if (navMenu.classList.contains("show")) {
+                        toggleBtn.classList.remove("fa-bars");
+                        toggleBtn.classList.add("fa-times");
+                    } else {
+                        toggleBtn.classList.remove("fa-times");
+                        toggleBtn.classList.add("fa-bars");
+                    }
+                });
+            }
+
+            // ----------------------------
+            // 🔹 Active Link Highlight
+            // ----------------------------
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active");
+                }
+            });
+
+            // ----------------------------
+            // 🔹 GREATEST COMMON DIVISOR (GCD) FUNCTION
+            // ----------------------------
+            function gcd(a, b) {
+                if (b === 0) {
+                    return Math.abs(a);
+                }
+                return gcd(b, a % b);
+            }
+
+            // ----------------------------
+            // 🔹 SIMPLIFY FRACTION FUNCTION
+            // ----------------------------
+            function simplifyFraction(numerator, denominator) {
+                if (denominator === 0) {
+                    return { numerator: 0, denominator: 0 }; // Invalid fraction
+                }
+                
+                const divisor = gcd(numerator, denominator);
+                let simplifiedNum = numerator / divisor;
+                let simplifiedDen = denominator / divisor;
+                
+                // Ensure denominator is positive
+                if (simplifiedDen < 0) {
+                    simplifiedNum = -simplifiedNum;
+                    simplifiedDen = -simplifiedDen;
+                }
+                
+                return {
+                    numerator: simplifiedNum,
+                    denominator: simplifiedDen
+                };
+            }
+
+            // ----------------------------
+            // 🔹 FRACTION CALCULATION FUNCTION
+            // ----------------------------
+            function calculateFraction(num1, den1, num2, den2, operation) {
+                let resultNum, resultDen;
+                
+                switch(operation) {
+                    case 'add':
+                        resultNum = (num1 * den2) + (num2 * den1);
+                        resultDen = den1 * den2;
+                        break;
+                    case 'subtract':
+                        resultNum = (num1 * den2) - (num2 * den1);
+                        resultDen = den1 * den2;
+                        break;
+                    case 'multiply':
+                        resultNum = num1 * num2;
+                        resultDen = den1 * den2;
+                        break;
+                    case 'divide':
+                        resultNum = num1 * den2;
+                        resultDen = den1 * num2;
+                        break;
+                    default:
+                        return null;
+                }
+                
+                return simplifyFraction(resultNum, resultDen);
+            }
+            
+            // ----------------------------
+            // 🔹 UPDATE FRACTION RESULT
+            // ----------------------------
+            function updateFractionResult() {
+                const num1 = parseInt(document.getElementById('num1').value);
+                const den1 = parseInt(document.getElementById('den1').value);
+                const num2 = parseInt(document.getElementById('num2').value);
+                const den2 = parseInt(document.getElementById('den2').value);
+                const operation = document.getElementById('operation').value;
+                
+                // Validate inputs
+                if (isNaN(num1) || isNaN(den1) || isNaN(num2) || isNaN(den2)) {
+                    document.getElementById('result-num').textContent = '-';
+                    document.getElementById('result-den').textContent = '-';
+                    document.getElementById('decimal-result').textContent = '-';
+                    document.getElementById('simplified-result').textContent = '-';
+                    return;
+                }
+                
+                if (den1 === 0 || den2 === 0) {
+                    document.getElementById('result-num').textContent = 'Error';
+                    document.getElementById('result-den').textContent = '';
+                    document.getElementById('decimal-result').textContent = 'Division by zero';
+                    document.getElementById('simplified-result').textContent = 'Invalid fraction';
+                    return;
+                }
+                
+                const result = calculateFraction(num1, den1, num2, den2, operation);
+                
+                if (result && result.denominator !== 0) {
+                    document.getElementById('result-num').textContent = result.numerator;
+                    document.getElementById('result-den').textContent = result.denominator;
+                    
+                    const decimalValue = result.numerator / result.denominator;
+                    document.getElementById('decimal-result').textContent = decimalValue.toFixed(6);
+                    
+                    if (result.denominator === 1) {
+                        document.getElementById('simplified-result').textContent = result.numerator.toString();
+                    } else {
+                        document.getElementById('simplified-result').textContent = 
+                            `${result.numerator}/${result.denominator}`;
+                    }
+                } else {
+                    document.getElementById('result-num').textContent = 'Error';
+                    document.getElementById('result-den').textContent = '';
+                    document.getElementById('decimal-result').textContent = 'Invalid operation';
+                    document.getElementById('simplified-result').textContent = 'Check inputs';
+                }
+            }
+            
+            // ----------------------------
+            // 🔹 CALCULATE FRACTION BUTTON
+            // ----------------------------
+            document.getElementById('calculate-fraction').addEventListener('click', function() {
+                updateFractionResult();
+            });
+            
+            // ----------------------------
+            // 🔹 UPDATE ON INPUT CHANGE
+            // ----------------------------
+            document.getElementById('num1').addEventListener('input', updateFractionResult);
+            document.getElementById('den1').addEventListener('input', updateFractionResult);
+            document.getElementById('num2').addEventListener('input', updateFractionResult);
+            document.getElementById('den2').addEventListener('input', updateFractionResult);
+            document.getElementById('operation').addEventListener('change', updateFractionResult);
+            
+            // ----------------------------
+            // 🔹 QUICK FRACTIONS
+            // ----------------------------
+            function updateQuickFractions() {
+                const container = document.getElementById('quick-fractions');
+                
+                container.innerHTML = '';
+                
+                const commonFractions = [
+                    { num: 1, den: 2 },
+                    { num: 1, den: 3 },
+                    { num: 1, den: 4 },
+                    { num: 1, den: 5 },
+                    { num: 2, den: 3 },
+                    { num: 3, den: 4 },
+                    { num: 2, den: 5 },
+                    { num: 3, den: 5 },
+                    { num: 4, den: 5 },
+                    { num: 1, den: 8 },
+                    { num: 3, den: 8 },
+                    { num: 5, den: 8 }
+                ];
+                
+                commonFractions.forEach(fraction => {
+                    const decimalValue = fraction.num / fraction.den;
+                    const card = document.createElement('div');
+                    card.className = 'quick-card';
+                    card.innerHTML = `
+                        <div class="quick-fraction">${fraction.num}/${fraction.den}</div>
+                        <div class="quick-decimal">${decimalValue.toFixed(3)}</div>
+                    `;
+                    card.addEventListener('click', () => {
+                        document.getElementById('num1').value = fraction.num;
+                        document.getElementById('den1').value = fraction.den;
+                        updateFractionResult();
+                    });
+                    container.appendChild(card);
+                });
+            }
+            
+            // ----------------------------
+            // 🔹 INITIALIZE CALCULATOR
+            // ----------------------------
+            function initializeCalculator() {
+                console.log("Initializing fraction calculator...");
+                
+                // Set default values
+                document.getElementById('num1').value = 1;
+                document.getElementById('den1').value = 2;
+                document.getElementById('num2').value = 1;
+                document.getElementById('den2').value = 3;
+                document.getElementById('operation').value = 'add';
+                
+                // Perform initial calculation
+                updateFractionResult();
+                updateQuickFractions();
+                
+                console.log("Fraction calculator initialized successfully");
+            }
+            
+            // Initialize when page loads
+            initializeCalculator();
+
+            /* ------------------------------
+                🔹 FOOTER LINKS (FILTER CALCULATORS)
+            ------------------------------ */
+            const footerLinks = document.querySelectorAll(".footer-links-column a[data-category]");
+            const calcItems = document.querySelectorAll(".calc-list li");
+
+            if (footerLinks.length > 0 && calcItems.length > 0) {
+                footerLinks.forEach(link => {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const category = this.getAttribute("data-category");
+
+                        calcItems.forEach(item => {
+                            if (category === "all") {
+                                item.style.display = "block";
+                            } else if (item.getAttribute("data-category") === category) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
