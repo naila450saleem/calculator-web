@@ -29,7 +29,32 @@
             background-color: var(--light-gray);
             color: var(--text-color);
             line-height: 1.6;
+             color: #222; /* readable dark color */
+  background-color: #fff;
         }
+
+        /* Add in your style.css */
+
+.footer-content, .sidebar, .calc-box p {
+  color: #333; /* darker gray for better readability */
+}
+a {
+  color: #0056b3;
+}
+a:hover {
+  color: #003f88;
+}
+
+
+        .calc-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:focus, button:focus {
+  outline: 2px solid #4285F4;
+  outline-offset: 2px;
+}
         
         .container {
             max-width: 1200px;
@@ -1020,12 +1045,12 @@
                     <p class="about-text" style="margin-top: 18px;">
                         Your professional calculation companion. Accurate, reliable, and free tools for all your calculation needs.
                     </p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+                               <div class="social-icons">
+  <a href="#" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+  <a href="#" aria-label="Visit our TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+  <a href="#" aria-label="Visit our YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+  <a href="#" aria-label="Visit our Twitter page"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+</div>
                 </div>
                 
                 <div class="footer-links">

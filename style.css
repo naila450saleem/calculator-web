@@ -21,14 +21,35 @@
             background-color: var(--light-gray);
             color: var(--text-color);
             line-height: 1.6;
+             color: #222; /* readable dark color */
+  background-color: #fff;
         }
+
+        /* Add in your style.css */
+
+.footer-content, .sidebar, .calc-box p {
+  color: #333; /* darker gray for better readability */
+}
+a {
+  color: #0056b3;
+}
+a:hover {
+  color: #003f88;
+}
+
 
         .calc-link {
   text-decoration: none;
   color: inherit;
 }
 
-        
+a:focus, button:focus {
+  outline: 2px solid #4285F4;
+  outline-offset: 2px;
+}
+
+
+    /* topbar     */
         .container {
             max-width: 1200px;
             margin: 0 auto;
