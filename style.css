@@ -49,6 +49,38 @@ a:focus, button:focus {
 }
 
 
+    .welcome-section {
+        text-align: center;
+        padding: 30px 20px;
+        margin-bottom: 30px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 10px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .welcome-section p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+        .welcome-section h1 {
+            font-size: 2rem;
+        }
+        
+        .welcome-section p {
+            font-size: 1.1rem;
+        }
+    }
+
+
     /* topbar     */
         .container {
             max-width: 1200px;
@@ -59,7 +91,7 @@ a:focus, button:focus {
         /* Top Ad Banner */
         .top-ad {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            padding: 12px 0;
+            padding: 50px 0;
             border-bottom: 1px solid var(--medium-gray);
             text-align: center;
             font-size: 14px;
@@ -98,21 +130,13 @@ header {
     transform: scale(1.05);
 }
 
-.logo-icon {
-    color: var(--primary-blue);
-    font-size: 24px;
+
+.logo img.logo-img {
+    height: 40px; /* adjust as needed */
+    width: auto;
+    display: inline-block;
 }
 
-.logo-text {
-    color: var(--text-color);
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-}
-
-.logo-text span {
-    color: var(--primary-red);
-}
 
 nav ul {
     display: flex;

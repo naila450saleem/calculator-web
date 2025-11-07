@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalculatorHub - Professional Calculation Tools</title>
+    <title>CalculatorHub - Age Calculator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -65,7 +65,7 @@ a:focus, button:focus {
         /* Top Ad Banner */
         .top-ad {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            padding: 12px 0;
+            padding: 50px 0;
             border-bottom: 1px solid var(--medium-gray);
             text-align: center;
             font-size: 14px;
@@ -233,7 +233,123 @@ nav a.active::after {
             font-size: 16px;
         }
         
-     
+        /* Age Calculator Styles */
+        .age-calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .form-group input, .form-group select {
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+        
+        .calculate-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        .result-container {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .result-container.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .result-title {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .result-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .result-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        .result-detail {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .result-detail p {
+            margin-bottom: 10px;
+        }
         
         /* Sidebar Styles */
         .sidebar-widget {
@@ -402,7 +518,7 @@ nav a.active::after {
         }
         
         @media (max-width: 992px) {
-            .calculator-grid {
+            .result-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -436,7 +552,7 @@ nav a.active::after {
                 flex-direction: column;
             }
             
-            .calculator-grid {
+            .result-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -462,7 +578,7 @@ nav a.active::after {
     <!-- Top Ad Banner -->
     <div class="top-ad">
         <div class="container">
-            Advertisement Space - Top Banner (970x90)
+            Advertisement Space - Top Banner (970x120)
         </div>
     </div>
 
@@ -497,44 +613,56 @@ nav a.active::after {
             <div class="content-area">
                 <!-- Calculator Header -->
                 <div class="calculator-header">
-                    <h1>Basic Calculator </h1>
-                    <p>Access a wide range of calculation tools for personal, educational, and professional use</p>
+                    <h1>Age Calculator</h1>
+                    <p>Calculate your exact age in years, months, weeks, and days. Find out how many days until your next birthday!</p>
                 </div>
                 
-                <!-- Calculator Display -->
-                <div class="calculator-container">
-                    <!-- <div class="calculator-display">
-                        <input type="text" class="display-input" value="0" readonly>
-                        <div class="calculator-buttons">
-                            <button class="calc-btn operator">C</button>
-                            <button class="calc-btn operator">±</button>
-                            <button class="calc-btn operator">%</button>
-                            <button class="calc-btn operator">÷</button>
-                            
-                            <button class="calc-btn">7</button>
-                            <button class="calc-btn">8</button>
-                            <button class="calc-btn">9</button>
-                            <button class="calc-btn operator">×</button>
-                            
-                            <button class="calc-btn">4</button>
-                            <button class="calc-btn">5</button>
-                            <button class="calc-btn">6</button>
-                            <button class="calc-btn operator">-</button>
-                            
-                            <button class="calc-btn">1</button>
-                            <button class="calc-btn">2</button>
-                            <button class="calc-btn">3</button>
-                            <button class="calc-btn operator">+</button>
-                            
-                            <button class="calc-btn" style="grid-column: span 2;">0</button>
-                            <button class="calc-btn">.</button>
-                            <button class="calc-btn equals">=</button>
+                <!-- Age Calculator -->
+                <div class="age-calculator">
+                    <form class="calculator-form" id="ageCalculatorForm">
+                        <div class="form-group">
+                            <label for="birthDate">Date of Birth</label>
+                            <input type="date" id="birthDate" name="birthDate" required>
                         </div>
-                    </div> -->
+                        
+                        <div class="form-group">
+                            <label for="calculationDate">Calculate Age As Of (Optional)</label>
+                            <input type="date" id="calculationDate" name="calculationDate">
+                            <small>Leave blank to calculate age as of today</small>
+                        </div>
+                        
+                        <button type="submit" class="calculate-btn">
+                            <i class="fas fa-calculator"></i> Calculate Age
+                        </button>
+                    </form>
                     
-                    <!-- Calculator Grid for Homepage -->
-                    <h2 style="margin: 35px 0 20px; color: var(--primary-blue); font-size: 24px; font-weight: 600;">Popular Calculators</h2>
-                   
+                    <div class="result-container" id="resultContainer">
+                        <h3 class="result-title">Your Age</h3>
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <div class="result-value" id="years">0</div>
+                                <div class="result-label">Years</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value" id="months">0</div>
+                                <div class="result-label">Months</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value" id="weeks">0</div>
+                                <div class="result-label">Weeks</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value" id="days">0</div>
+                                <div class="result-label">Days</div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-detail">
+                            <p id="ageDetail"></p>
+                            <p id="nextBirthday"></p>
+                            <p id="zodiacSign"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -545,7 +673,6 @@ nav a.active::after {
         Advertisement Space - Sidebar (300x600)
     </div>
 </div>
-
                 
                 <div class="sidebar-widget">
                     <h3>All Calculators</h3>
@@ -678,10 +805,130 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ----------------------------
-  // 🔹 Calculator Logic
+  // 🔹 Age Calculator Logic
   // ----------------------------
- 
+  const ageCalculatorForm = document.getElementById('ageCalculatorForm');
+  const resultContainer = document.getElementById('resultContainer');
   
+  if (ageCalculatorForm) {
+    ageCalculatorForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const birthDate = new Date(document.getElementById('birthDate').value);
+      let calculationDate = document.getElementById('calculationDate').value;
+      
+      // If no calculation date provided, use today's date
+      if (!calculationDate) {
+        calculationDate = new Date();
+      } else {
+        calculationDate = new Date(calculationDate);
+      }
+      
+      // Validate dates
+      if (isNaN(birthDate.getTime())) {
+        alert('Please enter a valid birth date');
+        return;
+      }
+      
+      if (birthDate > calculationDate) {
+        alert('Birth date cannot be in the future');
+        return;
+      }
+      
+      // Calculate age
+      const age = calculateAge(birthDate, calculationDate);
+      
+      // Display results
+      document.getElementById('years').textContent = age.years;
+      document.getElementById('months').textContent = age.months;
+      document.getElementById('weeks').textContent = age.weeks;
+      document.getElementById('days').textContent = age.days;
+      
+      // Display detailed information
+      document.getElementById('ageDetail').textContent = 
+        `You are ${age.years} years, ${age.months} months, and ${age.days} days old.`;
+      
+      // Calculate next birthday
+      const nextBirthday = getNextBirthday(birthDate, calculationDate);
+      const daysUntilBirthday = Math.ceil((nextBirthday - calculationDate) / (1000 * 60 * 60 * 24));
+      
+      document.getElementById('nextBirthday').textContent = 
+        `Your next birthday is in ${daysUntilBirthday} days (${nextBirthday.toDateString()}).`;
+      
+      // Get zodiac sign
+      const zodiac = getZodiacSign(birthDate);
+      document.getElementById('zodiacSign').textContent = 
+        `Your zodiac sign is ${zodiac}.`;
+      
+      // Show results
+      resultContainer.classList.add('show');
+    });
+  }
+  
+  // Function to calculate age
+  function calculateAge(birthDate, calculationDate) {
+    let years = calculationDate.getFullYear() - birthDate.getFullYear();
+    let months = calculationDate.getMonth() - birthDate.getMonth();
+    let days = calculationDate.getDate() - birthDate.getDate();
+    
+    // Adjust if calculation date month/day is before birth month/day
+    if (months < 0 || (months === 0 && days < 0)) {
+      years--;
+      months += 12;
+    }
+    
+    if (days < 0) {
+      const lastMonth = new Date(calculationDate.getFullYear(), calculationDate.getMonth(), 0);
+      days += lastMonth.getDate();
+      months--;
+    }
+    
+    // Calculate total days
+    const timeDiff = calculationDate.getTime() - birthDate.getTime();
+    const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const weeks = Math.floor(totalDays / 7);
+    
+    return {
+      years: years,
+      months: months,
+      weeks: weeks,
+      days: days
+    };
+  }
+  
+  // Function to get next birthday
+  function getNextBirthday(birthDate, calculationDate) {
+    const currentYear = calculationDate.getFullYear();
+    let nextBirthday = new Date(currentYear, birthDate.getMonth(), birthDate.getDate());
+    
+    // If birthday has already passed this year, use next year
+    if (nextBirthday < calculationDate) {
+      nextBirthday.setFullYear(currentYear + 1);
+    }
+    
+    return nextBirthday;
+  }
+  
+  // Function to get zodiac sign
+  function getZodiacSign(birthDate) {
+    const day = birthDate.getDate();
+    const month = birthDate.getMonth() + 1; // Months are 0-indexed
+    
+    if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return "Aquarius";
+    if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) return "Pisces";
+    if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return "Aries";
+    if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return "Taurus";
+    if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return "Gemini";
+    if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return "Cancer";
+    if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return "Leo";
+    if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return "Virgo";
+    if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return "Libra";
+    if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return "Scorpio";
+    if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return "Sagittarius";
+    if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return "Capricorn";
+    
+    return "Unknown";
+  }
 
   /* ------------------------------
      🔹 Animations on Page Load

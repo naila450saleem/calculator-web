@@ -65,7 +65,7 @@ a:focus, button:focus {
         /* Top Ad Banner */
         .top-ad {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            padding: 12px 0;
+            padding: 50px 0;
             border-bottom: 1px solid var(--medium-gray);
             text-align: center;
             font-size: 14px;
@@ -231,8 +231,8 @@ a:focus, button:focus {
             font-size: 16px;
         }
         
-        /* Simplified Currency Calculator Styles */
-        .currency-calculator {
+        /* IQ Calculator Styles */
+        .iq-calculator {
             background-color: white;
             border-radius: 10px;
             padding: 25px;
@@ -241,7 +241,7 @@ a:focus, button:focus {
             border: 1px solid rgba(0, 0, 0, 0.04);
         }
         
-        .converter-box {
+        .calculator-box {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -258,17 +258,17 @@ a:focus, button:focus {
             color: var(--dark-gray);
         }
         
-        .currency-row {
+        .input-row {
             display: flex;
             gap: 15px;
             align-items: center;
         }
         
-        .amount-input, .currency-select {
+        .amount-input, .age-select {
             flex: 1;
         }
         
-        .currency-row input, .currency-row select {
+        .input-row input, .input-row select {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid var(--medium-gray);
@@ -277,30 +277,10 @@ a:focus, button:focus {
             transition: border-color 0.3s, box-shadow 0.3s;
         }
         
-        .currency-row input:focus, .currency-row select:focus {
+        .input-row input:focus, .input-row select:focus {
             outline: none;
             border-color: var(--primary-blue);
             box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
-        }
-        
-        .swap-container {
-            text-align: center;
-            margin: 10px 0;
-        }
-        
-        .swap-button {
-            background: var(--light-gray);
-            border: 1px solid var(--medium-gray);
-            border-radius: 8px;
-            padding: 12px 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--dark-gray);
-            font-size: 14px;
-        }
-        
-        .swap-button:hover {
-            background: var(--medium-gray);
         }
         
         .calculate-btn {
@@ -336,24 +316,24 @@ a:focus, button:focus {
             color: var(--primary-green);
         }
         
-        .exchange-rate {
+        .result-description {
             color: var(--dark-gray);
             font-size: 14px;
             margin-top: 10px;
         }
         
-        .quick-conversions {
+        .iq-categories {
             margin-top: 30px;
         }
         
-        .quick-grid {
+        .iq-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 12px;
             margin-top: 15px;
         }
         
-        .quick-card {
+        .iq-card {
             background-color: white;
             padding: 15px;
             border-radius: 8px;
@@ -363,18 +343,18 @@ a:focus, button:focus {
             cursor: pointer;
         }
         
-        .quick-card:hover {
+        .iq-card:hover {
             border-color: var(--primary-blue);
             transform: translateY(-2px);
         }
         
-        .quick-currency {
+        .iq-range {
             font-weight: 600;
             color: var(--text-color);
             margin-bottom: 5px;
         }
         
-        .quick-rate {
+        .iq-description {
             font-size: 14px;
             color: var(--primary-blue);
         }
@@ -599,17 +579,17 @@ a:focus, button:focus {
                 padding: 8px 0;
             }
             
-            .currency-row {
+            .input-row {
                 flex-direction: column;
             }
             
-            .quick-grid {
+            .iq-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
         
         @media (max-width: 480px) {
-            .quick-grid {
+            .iq-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -623,7 +603,7 @@ a:focus, button:focus {
     <!-- Top Ad Banner -->
     <div class="top-ad">
         <div class="container">
-            Advertisement Space - Top Banner (970x90)
+            Advertisement Space - Top Banner (970x120)
         </div>
     </div>
 
@@ -652,84 +632,67 @@ a:focus, button:focus {
     </header>
 
     <!-- Main Content Section -->
-    <div class="container">
+    <main class="container">
         <div class="main-content">
             <div class="content-area">
                 <!-- Calculator Header -->
                 <div class="calculator-header">
-                    <h1>Currency Calculator</h1>
-                    <p>Convert between different currencies with current exchange rates</p>
+                    <h1>IQ Calculator</h1>
+                    <p>Estimate your IQ based on mental age and chronological age</p>
                 </div>
                 
-                <!-- Simplified Currency Calculator -->
-                <div class="currency-calculator">
-                    <div class="converter-box">
-                        <!-- From Currency -->
+                <!-- IQ Calculator -->
+                <div class="iq-calculator">
+                    <div class="calculator-box">
+                        <!-- Mental Age Input -->
                         <div class="input-group">
-                            <label>From:</label>
-                            <div class="currency-row">
+                            <label>Mental Age:</label>
+                            <div class="input-row">
                                 <div class="amount-input">
-                                    <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01" value="100">
+                                    <input type="number" id="mental-age" placeholder="Enter mental age" min="1" max="100" value="25">
                                 </div>
-                                <div class="currency-select">
-                                    <select id="from-currency">
-                                        <option value="USD">USD - US Dollar</option>
-                                        <option value="EUR">EUR - Euro</option>
-                                        <option value="GBP">GBP - British Pound</option>
-                                        <option value="JPY">JPY - Japanese Yen</option>
-                                        <option value="CAD">CAD - Canadian Dollar</option>
-                                        <option value="AUD">AUD - Australian Dollar</option>
-                                        <option value="INR">INR - Indian Rupee</option>
+                                <div class="age-select">
+                                    <select id="mental-age-unit">
+                                        <option value="years">Years</option>
+                                        <option value="months">Months</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Swap Button -->
-                        <div class="swap-container">
-                            <button class="swap-button" id="swap-currencies">
-                                <i class="fas fa-exchange-alt"></i> Swap Currencies
-                            </button>
-                        </div>
-                        
-                        <!-- To Currency -->
+                        <!-- Chronological Age Input -->
                         <div class="input-group">
-                            <label>To:</label>
-                            <div class="currency-row">
+                            <label>Chronological Age:</label>
+                            <div class="input-row">
                                 <div class="amount-input">
-                                    <input type="text" id="converted-amount" placeholder="Converted amount" readonly>
+                                    <input type="number" id="chronological-age" placeholder="Enter chronological age" min="1" max="100" value="25">
                                 </div>
-                                <div class="currency-select">
-                                    <select id="to-currency">
-                                        <option value="EUR">EUR - Euro</option>
-                                        <option value="USD">USD - US Dollar</option>
-                                        <option value="GBP">GBP - British Pound</option>
-                                        <option value="JPY">JPY - Japanese Yen</option>
-                                        <option value="CAD">CAD - Canadian Dollar</option>
-                                        <option value="AUD">AUD - Australian Dollar</option>
-                                        <option value="INR">INR - Indian Rupee</option>
+                                <div class="age-select">
+                                    <select id="chronological-age-unit">
+                                        <option value="years">Years</option>
+                                        <option value="months">Months</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Convert Button -->
-                        <button class="calculate-btn" id="convert-currency">
-                            <i class="fas fa-sync-alt"></i> Convert Currency
+                        <!-- Calculate Button -->
+                        <button class="calculate-btn" id="calculate-iq">
+                            <i class="fas fa-brain"></i> Calculate IQ
                         </button>
                         
                         <!-- Result Display -->
                         <div class="result-box">
-                            <div class="result-amount" id="conversion-result">-</div>
-                            <div class="exchange-rate" id="exchange-rate">-</div>
+                            <div class="result-amount" id="iq-result">-</div>
+                            <div class="result-description" id="iq-description">-</div>
                         </div>
                     </div>
                     
-                    <!-- Quick Conversions -->
-                    <div class="quick-conversions">
-                        <h3>Quick Conversions</h3>
-                        <div class="quick-grid" id="quick-conversions">
-                            <!-- Quick conversions will be populated here -->
+                    <!-- IQ Categories -->
+                    <div class="iq-categories">
+                        <h3>IQ Categories</h3>
+                        <div class="iq-grid" id="iq-categories">
+                            <!-- IQ categories will be populated here -->
                         </div>
                     </div>
                 </div>
@@ -746,32 +709,39 @@ a:focus, button:focus {
                 <div class="sidebar-widget">
                     <h3>All Calculators</h3>
                     <ul class="calc-list">
-                        <!-- Basic -->
-                        <li data-category="basic"><a href="#"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
-                        <li data-category="basic"><a href="#"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
-                        <li data-category="basic"><a href="#"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
+                           <!-- Basic -->
+  <li data-category="basic"><a href="basic.html"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
+  <li data-category="basic"><a href="Scientific.html"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
+  <li data-category="basic"><a href="percentage.html"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
 
-                        <!-- Conversion -->
-                        <li data-category="conversion"><a href="#"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
-                        <li data-category="conversion"><a href="#"><i class="fas fa-money-bill-wave"></i> Currency Converter</a></li>
-                        <li data-category="conversion"><a href="#"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
-                        <li data-category="conversion"><a href="#"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
+  <!-- Conversion -->
+  <li data-category="conversion"><a href="unit.html"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
+  <li data-category="conversion"><a href="IQ.html"><i class="fas fa-money-bill-wave"></i> IQ Calculator</a></li>
+  <li data-category="conversion"><a href="temperature.html"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
+  <li data-category="conversion"><a href="time.html"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
+  <li data-category="conversion"><a href="volume.html"><i class="fas fa-cube"></i> Volume Calculator</a></li>
+  <li data-category="conversion"><a href="speed.html"><i class="fas fa-tachometer-alt"></i> Speed Calculator</a></li>
 
-                        <!-- Health -->
-                        <li data-category="health"><a href="#"><i class="fas fa-weight"></i> BMI Calculator</a></li>
-                        <li data-category="health"><a href="#"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
-                        <li data-category="health"><a href="#"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
+  <!-- Health -->
+  <li data-category="health"><a href="bmi.html"><i class="fas fa-weight"></i> BMI Calculator</a></li>
+  <li data-category="health"><a href="age.html"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
+  <li data-category="health"><a href="calories.html"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
 
-                        <!-- Financial -->
-                        <li data-category="financial"><a href="#"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
-                        <li data-category="financial"><a href="#"><i class="fas fa-tags"></i> Discount Calculator</a></li>
-                        <li data-category="financial"><a href="#"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
-                    </ul>
+  <!-- Financial -->
+  <li data-category="financial"><a href="loan.html"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
+  <li data-category="financial"><a href="discount.html"><i class="fas fa-tags"></i> Discount Calculator</a></li>
+  <li data-category="financial"><a href="gpa.html"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
+  <li data-category="financial"><a href="fraction.html"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
+  <li data-category="financial"><a href="date.html"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
+  <li data-category="financial"><a href="fuel.html"><i class="fas fa-gas-pump"></i> Fuel Cost Calculator</a></li>
+  <li data-category="financial"><a href="saving.html"><i class="fas fa-piggy-bank"></i> Savings Calculator</a></li>
+  <li data-category="financial"><a href="tip.html"><i class="fas fa-utensils"></i> Tip Calculator</a></li>
+</ul>
+
                 </div>
             </div>
         </div>
-    </div>
-
+    </main >
     <!-- Footer Section -->
     <footer>
         <div class="container">
@@ -864,153 +834,120 @@ a:focus, button:focus {
             });
 
             // ----------------------------
-            // 🔹 COMPLETE CURRENCY DATA
+            // 🔹 IQ CALCULATION FUNCTION
             // ----------------------------
-            const exchangeRates = {
-                USD: { 
-                    EUR: 0.92, GBP: 0.79, JPY: 150.25, CAD: 1.35, AUD: 1.52, INR: 83.15
-                },
-                EUR: { 
-                    USD: 1.09, GBP: 0.86, JPY: 163.50, CAD: 1.47, AUD: 1.65, INR: 90.45
-                },
-                GBP: { 
-                    USD: 1.27, EUR: 1.16, JPY: 190.20, CAD: 1.71, AUD: 1.92, INR: 105.25
-                },
-                JPY: { 
-                    USD: 0.0067, EUR: 0.0061, GBP: 0.0053, CAD: 0.0090, AUD: 0.0101, INR: 0.55
-                },
-                CAD: { 
-                    USD: 0.74, EUR: 0.68, GBP: 0.58, JPY: 111.20, AUD: 1.12, INR: 61.55
-                },
-                AUD: { 
-                    USD: 0.66, EUR: 0.61, GBP: 0.52, JPY: 99.10, CAD: 0.89, INR: 54.75
-                },
-                INR: { 
-                    USD: 0.012, EUR: 0.011, GBP: 0.0095, JPY: 1.82, CAD: 0.016, AUD: 0.018
-                }
-            };
-            
-            // ----------------------------
-            // 🔹 CURRENCY CONVERSION FUNCTION
-            // ----------------------------
-            function convertCurrency(amount, fromCurrency, toCurrency) {
-                console.log("Converting:", amount, fromCurrency, "to", toCurrency);
+            function calculateIQ(mentalAge, chronologicalAge) {
+                console.log("Calculating IQ:", mentalAge, chronologicalAge);
                 
-                if (fromCurrency === toCurrency) {
-                    return amount;
+                if (chronologicalAge <= 0) {
+                    return null;
                 }
                 
-                // Check if we have the direct rate
-                if (exchangeRates[fromCurrency] && exchangeRates[fromCurrency][toCurrency]) {
-                    const result = amount * exchangeRates[fromCurrency][toCurrency];
-                    console.log("Direct conversion result:", result);
-                    return result;
-                }
-                
-                console.log("No direct rate found");
-                return null;
+                // Standard IQ formula: (Mental Age / Chronological Age) * 100
+                const iq = (mentalAge / chronologicalAge) * 100;
+                console.log("IQ result:", iq);
+                return iq;
             }
             
             // ----------------------------
-            // 🔹 UPDATE CONVERSION RESULT
+            // 🔹 GET IQ DESCRIPTION
             // ----------------------------
-            function updateConversionResult() {
-                const amount = parseFloat(document.getElementById('amount').value);
-                const fromCurrency = document.getElementById('from-currency').value;
-                const toCurrency = document.getElementById('to-currency').value;
+            function getIQDescription(iq) {
+                if (iq < 70) return "Very Low";
+                if (iq < 85) return "Low";
+                if (iq < 100) return "Below Average";
+                if (iq < 115) return "Average";
+                if (iq < 130) return "Above Average";
+                if (iq < 145) return "High";
+                return "Very High";
+            }
+            
+            // ----------------------------
+            // 🔹 UPDATE IQ RESULT
+            // ----------------------------
+            function updateIQResult() {
+                let mentalAge = parseFloat(document.getElementById('mental-age').value);
+                let chronologicalAge = parseFloat(document.getElementById('chronological-age').value);
                 
-                console.log("Input values:", {amount, fromCurrency, toCurrency});
+                // Convert to years if months selected
+                const mentalUnit = document.getElementById('mental-age-unit').value;
+                const chronologicalUnit = document.getElementById('chronological-age-unit').value;
                 
-                if (!amount || amount <= 0) {
-                    document.getElementById('conversion-result').textContent = "Enter valid amount";
-                    document.getElementById('exchange-rate').textContent = "";
+                if (mentalUnit === 'months') {
+                    mentalAge = mentalAge / 12;
+                }
+                
+                if (chronologicalUnit === 'months') {
+                    chronologicalAge = chronologicalAge / 12;
+                }
+                
+                console.log("Input values:", {mentalAge, chronologicalAge});
+                
+                if (!mentalAge || !chronologicalAge || mentalAge <= 0 || chronologicalAge <= 0) {
+                    document.getElementById('iq-result').textContent = "Enter valid ages";
+                    document.getElementById('iq-description').textContent = "";
                     return;
                 }
                 
-                const convertedAmount = convertCurrency(amount, fromCurrency, toCurrency);
+                const iq = calculateIQ(mentalAge, chronologicalAge);
                 
-                if (convertedAmount !== null && !isNaN(convertedAmount)) {
-                    const formattedAmount = convertedAmount.toLocaleString('en-US', { 
-                        minimumFractionDigits: 2, 
-                        maximumFractionDigits: 2 
-                    });
+                if (iq !== null && !isNaN(iq)) {
+                    const formattedIQ = iq.toFixed(0);
                     
-                    document.getElementById('conversion-result').textContent = 
-                        `${formattedAmount} ${toCurrency}`;
+                    document.getElementById('iq-result').textContent = 
+                        `IQ: ${formattedIQ}`;
                     
-                    const rate = convertCurrency(1, fromCurrency, toCurrency);
-                    document.getElementById('exchange-rate').textContent = 
-                        `1 ${fromCurrency} = ${rate.toFixed(4)} ${toCurrency}`;
-                    
-                    // Update the converted amount input field
-                    document.getElementById('converted-amount').value = formattedAmount;
+                    const description = getIQDescription(iq);
+                    document.getElementById('iq-description').textContent = 
+                        `${description} Intelligence`;
                 } else {
-                    document.getElementById('conversion-result').textContent = "Conversion not available";
-                    document.getElementById('exchange-rate').textContent = "";
+                    document.getElementById('iq-result').textContent = "Calculation error";
+                    document.getElementById('iq-description').textContent = "";
                 }
             }
             
             // ----------------------------
-            // 🔹 SWAP CURRENCIES
+            // 🔹 CALCULATE IQ BUTTON
             // ----------------------------
-            document.getElementById('swap-currencies').addEventListener('click', function() {
-                const fromCurrency = document.getElementById('from-currency');
-                const toCurrency = document.getElementById('to-currency');
-                
-                const temp = fromCurrency.value;
-                fromCurrency.value = toCurrency.value;
-                toCurrency.value = temp;
-                
-                updateConversionResult();
-                updateQuickConversions();
-            });
-            
-            // ----------------------------
-            // 🔹 CONVERT CURRENCY BUTTON
-            // ----------------------------
-            document.getElementById('convert-currency').addEventListener('click', function() {
-                console.log("Convert button clicked");
-                updateConversionResult();
+            document.getElementById('calculate-iq').addEventListener('click', function() {
+                console.log("Calculate IQ button clicked");
+                updateIQResult();
             });
             
             // ----------------------------
             // 🔹 UPDATE ON INPUT CHANGE
             // ----------------------------
-            document.getElementById('amount').addEventListener('input', updateConversionResult);
-            document.getElementById('from-currency').addEventListener('change', function() {
-                updateConversionResult();
-                updateQuickConversions();
-            });
-            document.getElementById('to-currency').addEventListener('change', updateConversionResult);
+            document.getElementById('mental-age').addEventListener('input', updateIQResult);
+            document.getElementById('chronological-age').addEventListener('input', updateIQResult);
+            document.getElementById('mental-age-unit').addEventListener('change', updateIQResult);
+            document.getElementById('chronological-age-unit').addEventListener('change', updateIQResult);
             
             // ----------------------------
-            // 🔹 QUICK CONVERSIONS
+            // 🔹 IQ CATEGORIES
             // ----------------------------
-            function updateQuickConversions() {
-                const fromCurrency = document.getElementById('from-currency').value;
-                const container = document.getElementById('quick-conversions');
+            function updateIQCategories() {
+                const container = document.getElementById('iq-categories');
                 
                 container.innerHTML = '';
                 
-                const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD', 'INR'];
+                const categories = [
+                    { range: "130+", description: "Very High" },
+                    { range: "120-129", description: "High" },
+                    { range: "110-119", description: "Above Average" },
+                    { range: "90-109", description: "Average" },
+                    { range: "80-89", description: "Below Average" },
+                    { range: "70-79", description: "Low" },
+                    { range: "<70", description: "Very Low" }
+                ];
                 
-                currencies.forEach(currency => {
-                    if (currency !== fromCurrency) {
-                        const rate = convertCurrency(1, fromCurrency, currency);
-                        if (rate !== null && !isNaN(rate)) {
-                            const card = document.createElement('div');
-                            card.className = 'quick-card';
-                            card.innerHTML = `
-                                <div class="quick-currency">${currency}</div>
-                                <div class="quick-rate">${rate.toFixed(4)}</div>
-                            `;
-                            card.addEventListener('click', () => {
-                                document.getElementById('to-currency').value = currency;
-                                updateConversionResult();
-                            });
-                            container.appendChild(card);
-                        }
-                    }
+                categories.forEach(category => {
+                    const card = document.createElement('div');
+                    card.className = 'iq-card';
+                    card.innerHTML = `
+                        <div class="iq-range">${category.range}</div>
+                        <div class="iq-description">${category.description}</div>
+                    `;
+                    container.appendChild(card);
                 });
             }
             
@@ -1018,18 +955,19 @@ a:focus, button:focus {
             // 🔹 INITIALIZE CALCULATOR
             // ----------------------------
             function initializeCalculator() {
-                console.log("Initializing currency calculator...");
+                console.log("Initializing IQ calculator...");
                 
                 // Set default values
-                document.getElementById('amount').value = 100;
-                document.getElementById('from-currency').value = 'USD';
-                document.getElementById('to-currency').value = 'EUR';
+                document.getElementById('mental-age').value = 25;
+                document.getElementById('chronological-age').value = 25;
+                document.getElementById('mental-age-unit').value = 'years';
+                document.getElementById('chronological-age-unit').value = 'years';
                 
-                // Perform initial conversion
-                updateConversionResult();
-                updateQuickConversions();
+                // Perform initial calculation
+                updateIQResult();
+                updateIQCategories();
                 
-                console.log("Currency calculator initialized successfully");
+                console.log("IQ calculator initialized successfully");
             }
             
             // Initialize when page loads

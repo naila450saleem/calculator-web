@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalculatorHub - Professional Calculation Tools</title>
+    <title>CalculatorHub - GPA Calculator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -65,7 +65,7 @@ a:focus, button:focus {
         /* Top Ad Banner */
         .top-ad {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            padding: 12px 0;
+            padding: 50px 0;
             border-bottom: 1px solid var(--medium-gray);
             text-align: center;
             font-size: 14px;
@@ -73,130 +73,128 @@ a:focus, button:focus {
         }
         
         /* Header Styles */
-header {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 0;
-}
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 22px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-.logo:hover {
-    transform: scale(1.05);
-}
+        .logo:hover {
+            transform: scale(1.05);
+        }
 
-.logo-icon {
-    color: var(--primary-blue);
-    font-size: 24px;
-}
+        .logo-icon {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
 
-.logo-text {
-    color: var(--text-color);
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-}
+        .logo-text {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
 
-.logo-text span {
-    color: var(--primary-red);
-}
+        .logo-text span {
+            color: var(--primary-red);
+        }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-nav a {
-    text-decoration: none;
-    color: var(--dark-gray);
-    font-weight: 500;
-    font-size: 15px;
-    transition: color 0.3s ease;
-    padding: 8px 0;
-    position: relative;
-}
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
 
-nav a:hover {
-    color: var(--primary-blue);
-}
+        nav a:hover {
+            color: var(--primary-blue);
+        }
 
-/* Underline animation */
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-blue);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
+        /* Underline animation */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
 
-nav a:hover::after {
-    width: 100%;
-}
+        nav a:hover::after {
+            width: 100%;
+        }
 
-/* Active link */
-nav a.active {
-    color: var(--primary-blue);
-    font-weight: 600;
-}
+        /* Active link */
+        nav a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
 
-nav a.active::after {
-    width: 100%;
-}
+        nav a.active::after {
+            width: 100%;
+        }
 
-/* Hide toggle by default */
-.menu-toggle {
-    display: none;
-}
+        /* Hide toggle by default */
+        .menu-toggle {
+            display: none;
+        }
 
-/* Show toggle only on mobile */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
+        /* Show toggle only on mobile */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
 
-    nav ul {
-        display: none;
-        flex-direction: column;
-        background: white;
-        position: absolute;
-        top: 65px;
-        right: 20px;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
 
-    nav ul.show {
-        display: flex;
-    }
-}
+            nav ul.show {
+                display: flex;
+            }
+        }
 
-
-        
         /* Main Content Styles */
         .main-content {
             display: flex;
@@ -233,7 +231,189 @@ nav a.active::after {
             font-size: 16px;
         }
         
-     
+        /* GPA Calculator Styles */
+        .gpa-calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 0;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .course-input, .grade-select, .credit-select {
+            flex: 1;
+        }
+        
+        .input-row input, .input-row select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .input-row input:focus, .input-row select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .course-list {
+            margin-top: 20px;
+        }
+        
+        .course-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: var(--light-gray);
+        }
+        
+        .course-name {
+            flex: 2;
+            font-weight: 500;
+        }
+        
+        .course-grade {
+            flex: 1;
+        }
+        
+        .course-credits {
+            flex: 1;
+        }
+        
+        .remove-course {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .add-course-btn {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .add-course-btn:hover {
+            background-color: #2e8b47;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 20px 0;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        .result-box {
+            background-color: var(--light-gray);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .result-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary-green);
+        }
+        
+        .result-description {
+            color: var(--dark-gray);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .gpa-summary {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .summary-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--medium-gray);
+            transition: all 0.3s;
+        }
+        
+        .summary-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .summary-value {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+        
+        .summary-label {
+            font-size: 14px;
+            color: var(--primary-blue);
+        }
         
         /* Sidebar Styles */
         .sidebar-widget {
@@ -454,135 +634,183 @@ nav a.active::after {
                 font-size: 12px;
                 padding: 8px 0;
             }
+            
+            .input-row {
+                flex-direction: column;
+            }
+            
+            .course-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .course-name, .course-grade, .course-credits {
+                width: 100%;
+            }
+            
+            .gpa-summary {
+                grid-template-columns: 1fr;
+            }
         }
- 
-      </style>
+        
+        @media (max-width: 480px) {
+            .result-amount {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Top Ad Banner -->
     <div class="top-ad">
         <div class="container">
-            Advertisement Space - Top Banner (970x90)
+            Advertisement Space - Top Banner (970x120)
         </div>
     </div>
 
     <!-- Header Section -->
     <header>
-  <div class="container">
-    <div class="header-content">
-      <div class="logo">
-        <i class="fas fa-calculator logo-icon"></i>
-        <div class="logo-text">Calculator<span>Hub</span></div>
-      </div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-calculator logo-icon"></i>
+                    <div class="logo-text">Calculator<span>Hub</span></div>
+                </div>
 
-      <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
 
-      <nav>
-        <ul>
+                <nav>
+                    <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="../about.html">About Us</a></li>
                         <li><a href="../calculators.html">All Calculators</a></li>
                         <li><a href="../faq.html">FAQ's</a></li>
                         <li><a href="../contact.html">Contact Us</a></li>
                     </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-
+                </nav>
+            </div>
+        </div>
+    </header>
 
     <!-- Main Content Section -->
-    <div class="container">
+    <main class="container">
         <div class="main-content">
             <div class="content-area">
                 <!-- Calculator Header -->
                 <div class="calculator-header">
-                    <h1>Basic Calculator </h1>
-                    <p>Access a wide range of calculation tools for personal, educational, and professional use</p>
+                    <h1>GPA Calculator</h1>
+                    <p>Calculate your Grade Point Average (GPA) for multiple courses</p>
                 </div>
                 
-                <!-- Calculator Display -->
-                <div class="calculator-container">
-                    <!-- <div class="calculator-display">
-                        <input type="text" class="display-input" value="0" readonly>
-                        <div class="calculator-buttons">
-                            <button class="calc-btn operator">C</button>
-                            <button class="calc-btn operator">±</button>
-                            <button class="calc-btn operator">%</button>
-                            <button class="calc-btn operator">÷</button>
-                            
-                            <button class="calc-btn">7</button>
-                            <button class="calc-btn">8</button>
-                            <button class="calc-btn">9</button>
-                            <button class="calc-btn operator">×</button>
-                            
-                            <button class="calc-btn">4</button>
-                            <button class="calc-btn">5</button>
-                            <button class="calc-btn">6</button>
-                            <button class="calc-btn operator">-</button>
-                            
-                            <button class="calc-btn">1</button>
-                            <button class="calc-btn">2</button>
-                            <button class="calc-btn">3</button>
-                            <button class="calc-btn operator">+</button>
-                            
-                            <button class="calc-btn" style="grid-column: span 2;">0</button>
-                            <button class="calc-btn">.</button>
-                            <button class="calc-btn equals">=</button>
+                <!-- GPA Calculator -->
+                <div class="gpa-calculator">
+                    <div class="calculator-box">
+                        <!-- Add Course Section -->
+                        <div class="input-group">
+                            <label>Add New Course:</label>
+                            <div class="input-row">
+                                <div class="course-input">
+                                    <input type="text" id="course-name" placeholder="Course Name" value="Mathematics">
+                                </div>
+                                <div class="grade-select">
+                                    <select id="course-grade">
+                                        <option value="4.0">A (4.0)</option>
+                                        <option value="3.7">A- (3.7)</option>
+                                        <option value="3.3">B+ (3.3)</option>
+                                        <option value="3.0">B (3.0)</option>
+                                        <option value="2.7">B- (2.7)</option>
+                                        <option value="2.3">C+ (2.3)</option>
+                                        <option value="2.0">C (2.0)</option>
+                                        <option value="1.7">C- (1.7)</option>
+                                        <option value="1.3">D+ (1.3)</option>
+                                        <option value="1.0">D (1.0)</option>
+                                        <option value="0.0">F (0.0)</option>
+                                    </select>
+                                </div>
+                                <div class="credit-select">
+                                    <select id="course-credits">
+                                        <option value="1">1 Credit</option>
+                                        <option value="2">2 Credits</option>
+                                        <option value="3" selected>3 Credits</option>
+                                        <option value="4">4 Credits</option>
+                                        <option value="5">5 Credits</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="add-course-btn" id="add-course">
+                                <i class="fas fa-plus"></i> Add Course
+                            </button>
                         </div>
-                    </div> -->
+                        
+                        <!-- Course List -->
+                        <div class="course-list" id="course-list">
+                            <!-- Courses will be added here dynamically -->
+                        </div>
+                        
+                        <!-- Calculate Button -->
+                        <button class="calculate-btn" id="calculate-gpa">
+                            <i class="fas fa-graduation-cap"></i> Calculate GPA
+                        </button>
+                        
+                        <!-- Result Display -->
+                        <div class="result-box">
+                            <div class="result-amount" id="gpa-result">-</div>
+                            <div class="result-description" id="gpa-description">-</div>
+                        </div>
+                    </div>
                     
-                    <!-- Calculator Grid for Homepage -->
-                    <h2 style="margin: 35px 0 20px; color: var(--primary-blue); font-size: 24px; font-weight: 600;">Popular Calculators</h2>
-                   
+                    <!-- GPA Summary -->
+                    <div class="gpa-summary" id="gpa-summary">
+                        <!-- GPA summary will be populated here -->
+                    </div>
                 </div>
             </div>
             
             <!-- Sidebar -->
             <div class="sidebar">
-               <div class="sidebar-widget">
-    <div class="sidebar-ad" style="width:300px; height:600px; background:#f1f1f1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:14px; color:#555; border:1px solid #ddd;">
-        Advertisement Space - Sidebar (300x600)
-    </div>
-</div>
-
+                <div class="sidebar-widget">
+                    <div class="sidebar-ad" style="width:300px; height:600px; background:#f1f1f1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:14px; color:#555; border:1px solid #ddd;">
+                        Advertisement Space - Sidebar (300x600)
+                    </div>
+                </div>
                 
                 <div class="sidebar-widget">
                     <h3>All Calculators</h3>
-  <ul class="calc-list">
-  <!-- Basic -->
-  <li data-category="basic"><a href="#"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
-  <li data-category="basic"><a href="#"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
-  <li data-category="basic"><a href="#"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
+                    <ul class="calc-list">
+           <!-- Basic -->
+  <li data-category="basic"><a href="basic.html"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
+  <li data-category="basic"><a href="Scientific.html"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
+  <li data-category="basic"><a href="percentage.html"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
 
   <!-- Conversion -->
-  <li data-category="conversion"><a href="#"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-money-bill-wave"></i> Currency Converter</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-cube"></i> Volume Calculator</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-tachometer-alt"></i> Speed Calculator</a></li>
+  <li data-category="conversion"><a href="unit.html"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
+  <li data-category="conversion"><a href="IQ.html"><i class="fas fa-money-bill-wave"></i> IQ Calculator</a></li>
+  <li data-category="conversion"><a href="temperature.html"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
+  <li data-category="conversion"><a href="time.html"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
+  <li data-category="conversion"><a href="volume.html"><i class="fas fa-cube"></i> Volume Calculator</a></li>
+  <li data-category="conversion"><a href="speed.html"><i class="fas fa-tachometer-alt"></i> Speed Calculator</a></li>
 
   <!-- Health -->
-  <li data-category="health"><a href="#"><i class="fas fa-weight"></i> BMI Calculator</a></li>
-  <li data-category="health"><a href="#"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
-  <li data-category="health"><a href="#"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
+  <li data-category="health"><a href="bmi.html"><i class="fas fa-weight"></i> BMI Calculator</a></li>
+  <li data-category="health"><a href="age.html"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
+  <li data-category="health"><a href="calories.html"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
 
   <!-- Financial -->
-  <li data-category="financial"><a href="#"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-tags"></i> Discount Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-gas-pump"></i> Fuel Cost Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-piggy-bank"></i> Savings Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-utensils"></i> Tip Calculator</a></li>
+  <li data-category="financial"><a href="loan.html"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
+  <li data-category="financial"><a href="discount.html"><i class="fas fa-tags"></i> Discount Calculator</a></li>
+  <li data-category="financial"><a href="gpa.html"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
+  <li data-category="financial"><a href="fraction.html"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
+  <li data-category="financial"><a href="date.html"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
+  <li data-category="financial"><a href="fuel.html"><i class="fas fa-gas-pump"></i> Fuel Cost Calculator</a></li>
+  <li data-category="financial"><a href="saving.html"><i class="fas fa-piggy-bank"></i> Savings Calculator</a></li>
+  <li data-category="financial"><a href="tip.html"><i class="fas fa-utensils"></i> Tip Calculator</a></li>
 </ul>
 
                 </div>
             </div>
         </div>
-    </div>
+    </main >
 
     <!-- Footer Section -->
     <footer>
@@ -596,7 +824,7 @@ nav a.active::after {
                     <p class="about-text" style="margin-top: 18px;">
                         Your professional calculation companion. Accurate, reliable, and free tools for all your calculation needs.
                     </p>
-                              <div class="social-icons">
+                               <div class="social-icons">
   <a href="#" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
   <a href="#" aria-label="Visit our TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
   <a href="#" aria-label="Visit our YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
@@ -605,17 +833,16 @@ nav a.active::after {
                 </div>
                 
                 <div class="footer-links">
-                  <div class="footer-links-column">
-  <h4>Calculators</h4>
-  <ul>
-        <li><a href="#" data-category="all">All Calculators</a></li>
-    <li><a href="#" data-category="basic">Basic Calculator</a></li>
-    <li><a href="#" data-category="financial">Financial Calculators</a></li>
-    <li><a href="#" data-category="health">Health Calculators</a></li>
-    <li><a href="#" data-category="conversion">Conversion Tools</a></li>
-  </ul>
-</div>
-
+                    <div class="footer-links-column">
+                        <h4>Calculators</h4>
+                        <ul>
+                            <li><a href="#" data-category="all">All Calculators</a></li>
+                            <li><a href="#" data-category="basic">Basic Calculator</a></li>
+                            <li><a href="#" data-category="financial">Financial Calculators</a></li>
+                            <li><a href="#" data-category="health">Health Calculators</a></li>
+                            <li><a href="#" data-category="conversion">Conversion Tools</a></li>
+                        </ul>
+                    </div>
                     
                     <div class="footer-links-column">
                         <h4>Company</h4>
@@ -645,83 +872,253 @@ nav a.active::after {
         </div>
     </footer>
 
-   <script>
-document.addEventListener("DOMContentLoaded", function () {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ----------------------------
+            // 🔹 Mobile Menu Toggle
+            // ----------------------------
+            const toggleBtn = document.querySelector(".menu-toggle i");
+            const navMenu = document.querySelector("nav ul");
 
-  // ----------------------------
-  // 🔹 Mobile Menu Toggle
-  // ----------------------------
-  const toggleBtn = document.querySelector(".menu-toggle i");
-  const navMenu = document.querySelector("nav ul");
+            if (toggleBtn && navMenu) {
+                toggleBtn.parentElement.addEventListener("click", () => {
+                    navMenu.classList.toggle("show");
+                    if (navMenu.classList.contains("show")) {
+                        toggleBtn.classList.remove("fa-bars");
+                        toggleBtn.classList.add("fa-times");
+                    } else {
+                        toggleBtn.classList.remove("fa-times");
+                        toggleBtn.classList.add("fa-bars");
+                    }
+                });
+            }
 
-  if (toggleBtn && navMenu) {
-    toggleBtn.parentElement.addEventListener("click", () => {
-      navMenu.classList.toggle("show");
-      if (navMenu.classList.contains("show")) {
-        toggleBtn.classList.remove("fa-bars");
-        toggleBtn.classList.add("fa-times");
-      } else {
-        toggleBtn.classList.remove("fa-times");
-        toggleBtn.classList.add("fa-bars");
-      }
-    });
-  }
+            // ----------------------------
+            // 🔹 Active Link Highlight
+            // ----------------------------
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active");
+                }
+            });
 
-  // ----------------------------
-  // 🔹 Active Link Highlight
-  // ----------------------------
-  const links = document.querySelectorAll("nav a");
-  links.forEach(link => {
-    if (link.href === window.location.href) {
-      link.classList.add("active");
-    }
-  });
+            // ----------------------------
+            // 🔹 COURSE MANAGEMENT
+            // ----------------------------
+            let courses = [];
+            
+            // Add course function
+            document.getElementById('add-course').addEventListener('click', function() {
+                const courseName = document.getElementById('course-name').value.trim();
+                const courseGrade = parseFloat(document.getElementById('course-grade').value);
+                const courseCredits = parseInt(document.getElementById('course-credits').value);
+                
+                if (!courseName) {
+                    alert('Please enter a course name');
+                    return;
+                }
+                
+                // Add course to array
+                courses.push({
+                    name: courseName,
+                    grade: courseGrade,
+                    credits: courseCredits
+                });
+                
+                // Update course list display
+                updateCourseList();
+                
+                // Clear input fields
+                document.getElementById('course-name').value = '';
+            });
+            
+            // Remove course function
+            function removeCourse(index) {
+                courses.splice(index, 1);
+                updateCourseList();
+            }
+            
+            // Update course list display
+            function updateCourseList() {
+                const courseList = document.getElementById('course-list');
+                courseList.innerHTML = '';
+                
+                if (courses.length === 0) {
+                    courseList.innerHTML = '<p style="text-align: center; color: var(--dark-gray);">No courses added yet</p>';
+                    return;
+                }
+                
+                courses.forEach((course, index) => {
+                    const courseItem = document.createElement('div');
+                    courseItem.className = 'course-item';
+                    courseItem.innerHTML = `
+                        <div class="course-name">${course.name}</div>
+                        <div class="course-grade">Grade: ${course.grade.toFixed(1)}</div>
+                        <div class="course-credits">Credits: ${course.credits}</div>
+                        <button class="remove-course" onclick="removeCourse(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    courseList.appendChild(courseItem);
+                });
+            }
+            
+            // ----------------------------
+            // 🔹 GPA CALCULATION FUNCTION
+            // ----------------------------
+            function calculateGPA() {
+                console.log("Calculating GPA for courses:", courses);
+                
+                if (courses.length === 0) {
+                    return null;
+                }
+                
+                let totalGradePoints = 0;
+                let totalCredits = 0;
+                
+                courses.forEach(course => {
+                    totalGradePoints += course.grade * course.credits;
+                    totalCredits += course.credits;
+                });
+                
+                const gpa = totalGradePoints / totalCredits;
+                
+                return {
+                    gpa: gpa,
+                    totalCredits: totalCredits,
+                    totalCourses: courses.length
+                };
+            }
+            
+            // ----------------------------
+            // 🔹 UPDATE GPA RESULT
+            // ----------------------------
+            function updateGPAResult() {
+                const result = calculateGPA();
+                
+                if (!result) {
+                    document.getElementById('gpa-result').textContent = "Add courses first";
+                    document.getElementById('gpa-description').textContent = "";
+                    document.getElementById('gpa-summary').innerHTML = "";
+                    return;
+                }
+                
+                const formattedGPA = result.gpa.toFixed(2);
+                
+                document.getElementById('gpa-result').textContent = 
+                    `${formattedGPA}`;
+                
+                // Determine GPA classification
+                let classification = '';
+                if (result.gpa >= 3.7) {
+                    classification = 'Excellent (First Class)';
+                } else if (result.gpa >= 3.3) {
+                    classification = 'Very Good';
+                } else if (result.gpa >= 3.0) {
+                    classification = 'Good';
+                } else if (result.gpa >= 2.7) {
+                    classification = 'Satisfactory';
+                } else if (result.gpa >= 2.0) {
+                    classification = 'Passing';
+                } else {
+                    classification = 'Needs Improvement';
+                }
+                
+                document.getElementById('gpa-description').textContent = 
+                    `${classification}`;
+                
+                // Update GPA summary
+                updateGPASummary(result);
+            }
+            
+            // ----------------------------
+            // 🔹 UPDATE GPA SUMMARY
+            // ----------------------------
+            function updateGPASummary(result) {
+                const container = document.getElementById('gpa-summary');
+                
+                container.innerHTML = `
+                    <div class="summary-card">
+                        <div class="summary-value">${result.totalCourses}</div>
+                        <div class="summary-label">Total Courses</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value">${result.totalCredits}</div>
+                        <div class="summary-label">Total Credits</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value">${result.gpa.toFixed(2)}</div>
+                        <div class="summary-label">GPA Score</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value">${result.gpa >= 2.0 ? 'Yes' : 'No'}</div>
+                        <div class="summary-label">Good Standing</div>
+                    </div>
+                `;
+            }
+            
+            // ----------------------------
+            // 🔹 CALCULATE GPA BUTTON
+            // ----------------------------
+            document.getElementById('calculate-gpa').addEventListener('click', function() {
+                console.log("Calculate GPA button clicked");
+                updateGPAResult();
+            });
+            
+            // ----------------------------
+            // 🔹 INITIALIZE CALCULATOR
+            // ----------------------------
+            function initializeCalculator() {
+                console.log("Initializing GPA calculator...");
+                
+                // Add sample courses for demonstration
+                courses = [
+                    { name: 'Mathematics', grade: 3.7, credits: 3 },
+                    { name: 'Physics', grade: 3.3, credits: 4 },
+                    { name: 'Chemistry', grade: 3.0, credits: 3 }
+                ];
+                
+                // Update course list display
+                updateCourseList();
+                
+                // Perform initial calculation
+                updateGPAResult();
+                
+                console.log("GPA calculator initialized successfully");
+            }
+            
+            // Make removeCourse function available globally
+            window.removeCourse = removeCourse;
+            
+            // Initialize when page loads
+            initializeCalculator();
 
-  // ----------------------------
-  // 🔹 Calculator Logic
-  // ----------------------------
- 
-  
+            /* ------------------------------
+                🔹 FOOTER LINKS (FILTER CALCULATORS)
+            ------------------------------ */
+            const footerLinks = document.querySelectorAll(".footer-links-column a[data-category]");
+            const calcItems = document.querySelectorAll(".calc-list li");
 
-  /* ------------------------------
-     🔹 Animations on Page Load
-  ------------------------------ */
-  document.querySelectorAll(".calc-box").forEach((box, index) => {
-    box.style.opacity = "0";
-    box.style.transform = "translateY(20px)";
+            if (footerLinks.length > 0 && calcItems.length > 0) {
+                footerLinks.forEach(link => {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const category = this.getAttribute("data-category");
 
-    setTimeout(() => {
-      box.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-      box.style.opacity = "1";
-      box.style.transform = "translateY(0)";
-    }, index * 100);
-  });
-
-  /* ------------------------------
-     🔹 Footer Links (Filter Calculators)
-  ------------------------------ */
-  const footerLinks = document.querySelectorAll(".footer-links-column a[data-category]");
-  const calcItems = document.querySelectorAll(".calc-list li");
-
-  if (footerLinks.length > 0 && calcItems.length > 0) {
-    footerLinks.forEach(link => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        const category = this.getAttribute("data-category");
-
-        calcItems.forEach(item => {
-          if (category === "all") {
-            item.style.display = "block";
-          } else if (item.getAttribute("data-category") === category) {
-            item.style.display = "block";
-          } else {
-            item.style.display = "none";
-          }
+                        calcItems.forEach(item => {
+                            if (category === "all") {
+                                item.style.display = "block";
+                            } else if (item.getAttribute("data-category") === category) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+            }
         });
-      });
-    });
-  }
-});
-</script>
+    </script>
 </body>
 </html>

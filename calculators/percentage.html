@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalculatorHub - Professional Calculation Tools</title>
+    <title>CalculatorHub - Percentage Calculator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -65,7 +65,7 @@ a:focus, button:focus {
         /* Top Ad Banner */
         .top-ad {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            padding: 12px 0;
+            padding: 50px 0;
             border-bottom: 1px solid var(--medium-gray);
             text-align: center;
             font-size: 14px;
@@ -73,130 +73,128 @@ a:focus, button:focus {
         }
         
         /* Header Styles */
-header {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 0;
-}
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 22px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-.logo:hover {
-    transform: scale(1.05);
-}
+        .logo:hover {
+            transform: scale(1.05);
+        }
 
-.logo-icon {
-    color: var(--primary-blue);
-    font-size: 24px;
-}
+        .logo-icon {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
 
-.logo-text {
-    color: var(--text-color);
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-}
+        .logo-text {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
 
-.logo-text span {
-    color: var(--primary-red);
-}
+        .logo-text span {
+            color: var(--primary-red);
+        }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-nav a {
-    text-decoration: none;
-    color: var(--dark-gray);
-    font-weight: 500;
-    font-size: 15px;
-    transition: color 0.3s ease;
-    padding: 8px 0;
-    position: relative;
-}
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
 
-nav a:hover {
-    color: var(--primary-blue);
-}
+        nav a:hover {
+            color: var(--primary-blue);
+        }
 
-/* Underline animation */
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-blue);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
+        /* Underline animation */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
 
-nav a:hover::after {
-    width: 100%;
-}
+        nav a:hover::after {
+            width: 100%;
+        }
 
-/* Active link */
-nav a.active {
-    color: var(--primary-blue);
-    font-weight: 600;
-}
+        /* Active link */
+        nav a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
 
-nav a.active::after {
-    width: 100%;
-}
+        nav a.active::after {
+            width: 100%;
+        }
 
-/* Hide toggle by default */
-.menu-toggle {
-    display: none;
-}
+        /* Hide toggle by default */
+        .menu-toggle {
+            display: none;
+        }
 
-/* Show toggle only on mobile */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
+        /* Show toggle only on mobile */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
 
-    nav ul {
-        display: none;
-        flex-direction: column;
-        background: white;
-        position: absolute;
-        top: 65px;
-        right: 20px;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
 
-    nav ul.show {
-        display: flex;
-    }
-}
+            nav ul.show {
+                display: flex;
+            }
+        }
 
-
-        
         /* Main Content Styles */
         .main-content {
             display: flex;
@@ -233,7 +231,133 @@ nav a.active::after {
             font-size: 16px;
         }
         
-     
+        /* Percentage Calculator Styles */
+        .percentage-calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .calculator-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 0;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .amount-input {
+            flex: 1;
+        }
+        
+        .input-row input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .input-row input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 20px 0;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        .result-box {
+            background-color: var(--light-gray);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .result-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary-green);
+        }
+        
+        .result-description {
+            color: var(--dark-gray);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .quick-calculations {
+            margin-top: 30px;
+        }
+        
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .quick-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--medium-gray);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .quick-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .quick-value {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+        
+        .quick-result {
+            font-size: 14px;
+            color: var(--primary-blue);
+        }
         
         /* Sidebar Styles */
         .sidebar-widget {
@@ -454,135 +578,158 @@ nav a.active::after {
                 font-size: 12px;
                 padding: 8px 0;
             }
+            
+            .input-row {
+                flex-direction: column;
+            }
+            
+            .quick-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
- 
-      </style>
+        
+        @media (max-width: 480px) {
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .result-amount {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Top Ad Banner -->
     <div class="top-ad">
         <div class="container">
-            Advertisement Space - Top Banner (970x90)
+            Advertisement Space - Top Banner (970x120)
         </div>
     </div>
 
     <!-- Header Section -->
     <header>
-  <div class="container">
-    <div class="header-content">
-      <div class="logo">
-        <i class="fas fa-calculator logo-icon"></i>
-        <div class="logo-text">Calculator<span>Hub</span></div>
-      </div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-calculator logo-icon"></i>
+                    <div class="logo-text">Calculator<span>Hub</span></div>
+                </div>
 
-      <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
 
-      <nav>
-        <ul>
+                <nav>
+                    <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="../about.html">About Us</a></li>
                         <li><a href="../calculators.html">All Calculators</a></li>
                         <li><a href="../faq.html">FAQ's</a></li>
                         <li><a href="../contact.html">Contact Us</a></li>
                     </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-
+                </nav>
+            </div>
+        </div>
+    </header>
 
     <!-- Main Content Section -->
-    <div class="container">
+    <main class="container">
         <div class="main-content">
             <div class="content-area">
                 <!-- Calculator Header -->
                 <div class="calculator-header">
-                    <h1>Basic Calculator </h1>
-                    <p>Access a wide range of calculation tools for personal, educational, and professional use</p>
+                    <h1>Percentage Calculator</h1>
+                    <p>Calculate percentages easily for any value</p>
                 </div>
                 
-                <!-- Calculator Display -->
-                <div class="calculator-container">
-                    <!-- <div class="calculator-display">
-                        <input type="text" class="display-input" value="0" readonly>
-                        <div class="calculator-buttons">
-                            <button class="calc-btn operator">C</button>
-                            <button class="calc-btn operator">±</button>
-                            <button class="calc-btn operator">%</button>
-                            <button class="calc-btn operator">÷</button>
-                            
-                            <button class="calc-btn">7</button>
-                            <button class="calc-btn">8</button>
-                            <button class="calc-btn">9</button>
-                            <button class="calc-btn operator">×</button>
-                            
-                            <button class="calc-btn">4</button>
-                            <button class="calc-btn">5</button>
-                            <button class="calc-btn">6</button>
-                            <button class="calc-btn operator">-</button>
-                            
-                            <button class="calc-btn">1</button>
-                            <button class="calc-btn">2</button>
-                            <button class="calc-btn">3</button>
-                            <button class="calc-btn operator">+</button>
-                            
-                            <button class="calc-btn" style="grid-column: span 2;">0</button>
-                            <button class="calc-btn">.</button>
-                            <button class="calc-btn equals">=</button>
+                <!-- Percentage Calculator -->
+                <div class="percentage-calculator">
+                    <div class="calculator-box">
+                        <!-- Value Input -->
+                        <div class="input-group">
+                            <label>Value:</label>
+                            <div class="input-row">
+                                <div class="amount-input">
+                                    <input type="number" id="value" placeholder="Enter value" min="0" step="0.01" value="100">
+                                </div>
+                            </div>
                         </div>
-                    </div> -->
+                        
+                        <!-- Percentage Input -->
+                        <div class="input-group">
+                            <label>Percentage:</label>
+                            <div class="input-row">
+                                <div class="amount-input">
+                                    <input type="number" id="percentage" placeholder="Enter percentage" min="0" max="100" step="0.01" value="10">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Calculate Button -->
+                        <button class="calculate-btn" id="calculate-percentage">
+                            <i class="fas fa-percentage"></i> Calculate Percentage
+                        </button>
+                        
+                        <!-- Result Display -->
+                        <div class="result-box">
+                            <div class="result-amount" id="percentage-result">-</div>
+                            <div class="result-description" id="percentage-description">-</div>
+                        </div>
+                    </div>
                     
-                    <!-- Calculator Grid for Homepage -->
-                    <h2 style="margin: 35px 0 20px; color: var(--primary-blue); font-size: 24px; font-weight: 600;">Popular Calculators</h2>
-                   
+                    <!-- Quick Calculations -->
+                    <div class="quick-calculations">
+                        <h3>Quick Calculations</h3>
+                        <div class="quick-grid" id="quick-calculations">
+                            <!-- Quick calculations will be populated here -->
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <!-- Sidebar -->
             <div class="sidebar">
-               <div class="sidebar-widget">
-    <div class="sidebar-ad" style="width:300px; height:600px; background:#f1f1f1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:14px; color:#555; border:1px solid #ddd;">
-        Advertisement Space - Sidebar (300x600)
-    </div>
-</div>
-
+                <div class="sidebar-widget">
+                    <div class="sidebar-ad" style="width:300px; height:600px; background:#f1f1f1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:14px; color:#555; border:1px solid #ddd;">
+                        Advertisement Space - Sidebar (300x600)
+                    </div>
+                </div>
                 
                 <div class="sidebar-widget">
                     <h3>All Calculators</h3>
-  <ul class="calc-list">
-  <!-- Basic -->
-  <li data-category="basic"><a href="#"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
-  <li data-category="basic"><a href="#"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
-  <li data-category="basic"><a href="#"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
+                    <ul class="calc-list">
+                           <!-- Basic -->
+  <li data-category="basic"><a href="basic.html"><i class="fas fa-calculator"></i> Basic Calculator</a></li>
+  <li data-category="basic"><a href="Scientific.html"><i class="fas fa-square-root-alt"></i> Scientific Calculator</a></li>
+  <li data-category="basic"><a href="percentage.html"><i class="fas fa-percentage"></i> Percentage Calculator</a></li>
 
   <!-- Conversion -->
-  <li data-category="conversion"><a href="#"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-money-bill-wave"></i> Currency Converter</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-cube"></i> Volume Calculator</a></li>
-  <li data-category="conversion"><a href="#"><i class="fas fa-tachometer-alt"></i> Speed Calculator</a></li>
+  <li data-category="conversion"><a href="unit.html"><i class="fas fa-ruler-combined"></i> Unit Converter</a></li>
+  <li data-category="conversion"><a href="IQ.html"><i class="fas fa-money-bill-wave"></i> IQ Calculator</a></li>
+  <li data-category="conversion"><a href="temperature.html"><i class="fas fa-temperature-high"></i> Temperature Converter</a></li>
+  <li data-category="conversion"><a href="time.html"><i class="fas fa-stopwatch"></i> Time Calculator</a></li>
+  <li data-category="conversion"><a href="volume.html"><i class="fas fa-cube"></i> Volume Calculator</a></li>
+  <li data-category="conversion"><a href="speed.html"><i class="fas fa-tachometer-alt"></i> Speed Calculator</a></li>
 
   <!-- Health -->
-  <li data-category="health"><a href="#"><i class="fas fa-weight"></i> BMI Calculator</a></li>
-  <li data-category="health"><a href="#"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
-  <li data-category="health"><a href="#"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
+  <li data-category="health"><a href="bmi.html"><i class="fas fa-weight"></i> BMI Calculator</a></li>
+  <li data-category="health"><a href="age.html"><i class="fas fa-birthday-cake"></i> Age Calculator</a></li>
+  <li data-category="health"><a href="calories.html"><i class="fas fa-apple-alt"></i> Calories Calculator</a></li>
 
   <!-- Financial -->
-  <li data-category="financial"><a href="#"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-tags"></i> Discount Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-gas-pump"></i> Fuel Cost Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-piggy-bank"></i> Savings Calculator</a></li>
-  <li data-category="financial"><a href="#"><i class="fas fa-utensils"></i> Tip Calculator</a></li>
+  <li data-category="financial"><a href="loan.html"><i class="fas fa-file-invoice-dollar"></i> Loan Calculator</a></li>
+  <li data-category="financial"><a href="discount.html"><i class="fas fa-tags"></i> Discount Calculator</a></li>
+  <li data-category="financial"><a href="gpa.html"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
+  <li data-category="financial"><a href="fraction.html"><i class="fas fa-divide"></i> Fraction Calculator</a></li>
+  <li data-category="financial"><a href="date.html"><i class="fas fa-calendar-alt"></i> Date Calculator</a></li>
+  <li data-category="financial"><a href="fuel.html"><i class="fas fa-gas-pump"></i> Fuel Cost Calculator</a></li>
+  <li data-category="financial"><a href="saving.html"><i class="fas fa-piggy-bank"></i> Savings Calculator</a></li>
+  <li data-category="financial"><a href="tip.html"><i class="fas fa-utensils"></i> Tip Calculator</a></li>
 </ul>
 
                 </div>
             </div>
         </div>
-    </div>
+    </main >
 
     <!-- Footer Section -->
     <footer>
@@ -596,7 +743,7 @@ nav a.active::after {
                     <p class="about-text" style="margin-top: 18px;">
                         Your professional calculation companion. Accurate, reliable, and free tools for all your calculation needs.
                     </p>
-                              <div class="social-icons">
+                               <div class="social-icons">
   <a href="#" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
   <a href="#" aria-label="Visit our TikTok profile"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
   <a href="#" aria-label="Visit our YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
@@ -605,17 +752,16 @@ nav a.active::after {
                 </div>
                 
                 <div class="footer-links">
-                  <div class="footer-links-column">
-  <h4>Calculators</h4>
-  <ul>
-        <li><a href="#" data-category="all">All Calculators</a></li>
-    <li><a href="#" data-category="basic">Basic Calculator</a></li>
-    <li><a href="#" data-category="financial">Financial Calculators</a></li>
-    <li><a href="#" data-category="health">Health Calculators</a></li>
-    <li><a href="#" data-category="conversion">Conversion Tools</a></li>
-  </ul>
-</div>
-
+                    <div class="footer-links-column">
+                        <h4>Calculators</h4>
+                        <ul>
+                            <li><a href="#" data-category="all">All Calculators</a></li>
+                            <li><a href="#" data-category="basic">Basic Calculator</a></li>
+                            <li><a href="#" data-category="financial">Financial Calculators</a></li>
+                            <li><a href="#" data-category="health">Health Calculators</a></li>
+                            <li><a href="#" data-category="conversion">Conversion Tools</a></li>
+                        </ul>
+                    </div>
                     
                     <div class="footer-links-column">
                         <h4>Company</h4>
@@ -645,83 +791,170 @@ nav a.active::after {
         </div>
     </footer>
 
-   <script>
-document.addEventListener("DOMContentLoaded", function () {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // ----------------------------
+            // 🔹 Mobile Menu Toggle
+            // ----------------------------
+            const toggleBtn = document.querySelector(".menu-toggle i");
+            const navMenu = document.querySelector("nav ul");
 
-  // ----------------------------
-  // 🔹 Mobile Menu Toggle
-  // ----------------------------
-  const toggleBtn = document.querySelector(".menu-toggle i");
-  const navMenu = document.querySelector("nav ul");
+            if (toggleBtn && navMenu) {
+                toggleBtn.parentElement.addEventListener("click", () => {
+                    navMenu.classList.toggle("show");
+                    if (navMenu.classList.contains("show")) {
+                        toggleBtn.classList.remove("fa-bars");
+                        toggleBtn.classList.add("fa-times");
+                    } else {
+                        toggleBtn.classList.remove("fa-times");
+                        toggleBtn.classList.add("fa-bars");
+                    }
+                });
+            }
 
-  if (toggleBtn && navMenu) {
-    toggleBtn.parentElement.addEventListener("click", () => {
-      navMenu.classList.toggle("show");
-      if (navMenu.classList.contains("show")) {
-        toggleBtn.classList.remove("fa-bars");
-        toggleBtn.classList.add("fa-times");
-      } else {
-        toggleBtn.classList.remove("fa-times");
-        toggleBtn.classList.add("fa-bars");
-      }
-    });
-  }
+            // ----------------------------
+            // 🔹 Active Link Highlight
+            // ----------------------------
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add("active");
+                }
+            });
 
-  // ----------------------------
-  // 🔹 Active Link Highlight
-  // ----------------------------
-  const links = document.querySelectorAll("nav a");
-  links.forEach(link => {
-    if (link.href === window.location.href) {
-      link.classList.add("active");
-    }
-  });
+            // ----------------------------
+            // 🔹 PERCENTAGE CALCULATION FUNCTION
+            // ----------------------------
+            function calculatePercentage(value, percentage) {
+                console.log("Calculating percentage:", value, percentage);
+                
+                const result = (value * percentage) / 100;
+                console.log("Percentage result:", result);
+                return result;
+            }
+            
+            // ----------------------------
+            // 🔹 UPDATE PERCENTAGE RESULT
+            // ----------------------------
+            function updatePercentageResult() {
+                const value = parseFloat(document.getElementById('value').value);
+                const percentage = parseFloat(document.getElementById('percentage').value);
+                
+                console.log("Input values:", {value, percentage});
+                
+                if (!value || !percentage || value <= 0 || percentage <= 0) {
+                    document.getElementById('percentage-result').textContent = "Enter valid values";
+                    document.getElementById('percentage-description').textContent = "";
+                    return;
+                }
+                
+                const result = calculatePercentage(value, percentage);
+                
+                if (result !== null && !isNaN(result)) {
+                    const formattedResult = result.toLocaleString('en-US', { 
+                        minimumFractionDigits: 2, 
+                        maximumFractionDigits: 2 
+                    });
+                    
+                    document.getElementById('percentage-result').textContent = 
+                        `${formattedResult}`;
+                    
+                    document.getElementById('percentage-description').textContent = 
+                        `${percentage}% of ${value} is ${formattedResult}`;
+                } else {
+                    document.getElementById('percentage-result').textContent = "Calculation error";
+                    document.getElementById('percentage-description').textContent = "";
+                }
+            }
+            
+            // ----------------------------
+            // 🔹 CALCULATE PERCENTAGE BUTTON
+            // ----------------------------
+            document.getElementById('calculate-percentage').addEventListener('click', function() {
+                console.log("Calculate percentage button clicked");
+                updatePercentageResult();
+            });
+            
+            // ----------------------------
+            // 🔹 UPDATE ON INPUT CHANGE
+            // ----------------------------
+            document.getElementById('value').addEventListener('input', updatePercentageResult);
+            document.getElementById('percentage').addEventListener('input', updatePercentageResult);
+            
+            // ----------------------------
+            // 🔹 QUICK CALCULATIONS
+            // ----------------------------
+            function updateQuickCalculations() {
+                const value = parseFloat(document.getElementById('value').value) || 100;
+                const container = document.getElementById('quick-calculations');
+                
+                container.innerHTML = '';
+                
+                const percentages = [5, 10, 15, 20, 25, 50, 75, 100];
+                
+                percentages.forEach(percentage => {
+                    const result = calculatePercentage(value, percentage);
+                    if (result !== null && !isNaN(result)) {
+                        const card = document.createElement('div');
+                        card.className = 'quick-card';
+                        card.innerHTML = `
+                            <div class="quick-value">${percentage}%</div>
+                            <div class="quick-result">${result.toFixed(2)}</div>
+                        `;
+                        card.addEventListener('click', () => {
+                            document.getElementById('percentage').value = percentage;
+                            updatePercentageResult();
+                        });
+                        container.appendChild(card);
+                    }
+                });
+            }
+            
+            // ----------------------------
+            // 🔹 INITIALIZE CALCULATOR
+            // ----------------------------
+            function initializeCalculator() {
+                console.log("Initializing percentage calculator...");
+                
+                // Set default values
+                document.getElementById('value').value = 100;
+                document.getElementById('percentage').value = 10;
+                
+                // Perform initial calculation
+                updatePercentageResult();
+                updateQuickCalculations();
+                
+                console.log("Percentage calculator initialized successfully");
+            }
+            
+            // Initialize when page loads
+            initializeCalculator();
 
-  // ----------------------------
-  // 🔹 Calculator Logic
-  // ----------------------------
- 
-  
+            /* ------------------------------
+                🔹 FOOTER LINKS (FILTER CALCULATORS)
+            ------------------------------ */
+            const footerLinks = document.querySelectorAll(".footer-links-column a[data-category]");
+            const calcItems = document.querySelectorAll(".calc-list li");
 
-  /* ------------------------------
-     🔹 Animations on Page Load
-  ------------------------------ */
-  document.querySelectorAll(".calc-box").forEach((box, index) => {
-    box.style.opacity = "0";
-    box.style.transform = "translateY(20px)";
+            if (footerLinks.length > 0 && calcItems.length > 0) {
+                footerLinks.forEach(link => {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const category = this.getAttribute("data-category");
 
-    setTimeout(() => {
-      box.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-      box.style.opacity = "1";
-      box.style.transform = "translateY(0)";
-    }, index * 100);
-  });
-
-  /* ------------------------------
-     🔹 Footer Links (Filter Calculators)
-  ------------------------------ */
-  const footerLinks = document.querySelectorAll(".footer-links-column a[data-category]");
-  const calcItems = document.querySelectorAll(".calc-list li");
-
-  if (footerLinks.length > 0 && calcItems.length > 0) {
-    footerLinks.forEach(link => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        const category = this.getAttribute("data-category");
-
-        calcItems.forEach(item => {
-          if (category === "all") {
-            item.style.display = "block";
-          } else if (item.getAttribute("data-category") === category) {
-            item.style.display = "block";
-          } else {
-            item.style.display = "none";
-          }
+                        calcItems.forEach(item => {
+                            if (category === "all") {
+                                item.style.display = "block";
+                            } else if (item.getAttribute("data-category") === category) {
+                                item.style.display = "block";
+                            } else {
+                                item.style.display = "none";
+                            }
+                        });
+                    });
+                });
+            }
         });
-      });
-    });
-  }
-});
-</script>
+    </script>
 </body>
 </html>
