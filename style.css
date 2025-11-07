@@ -191,9 +191,17 @@ nav a.active::after {
 }
 
 /* Show toggle only on mobile */
+/* Mobile Menu Fix - Replace existing mobile menu styles */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
+        cursor: pointer;
+        font-size: 24px;
+        color: var(--dark-gray);
+        padding: 5px;
+        background: none;
+        border: none;
+        z-index: 1001;
     }
 
     nav ul {
@@ -201,15 +209,40 @@ nav a.active::after {
         flex-direction: column;
         background: white;
         position: absolute;
-        top: 65px;
-        right: 20px;
-        padding: 15px;
-        border-radius: 8px;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 20px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        margin: 0;
     }
 
     nav ul.show {
         display: flex;
+    }
+
+    nav ul li {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 12px 15px;
+        border-bottom: 1px solid var(--medium-gray);
+        text-decoration: none;
+        width: 100%;
+    }
+
+    nav ul li:last-child a {
+        border-bottom: none;
+    }
+    
+    /* Header content adjustment for mobile */
+    .header-content {
+        position: relative;
     }
 }
 
@@ -618,4 +651,11 @@ nav a.active::after {
                 padding: 8px 0;
             }
         }
+
+
+
+
+
+
+        
  

@@ -36,7 +36,7 @@
     <header>
   <div class="container">
     <div class="header-content">
-  <div class="logo">
+   <div class="logo">
     <a href="index.html">
         <img src="images/calculatorcasa-logo.svg" alt="Free online calculator - CalculatorCasa" class="logo-img">
     </a>
@@ -47,15 +47,14 @@
 
       <nav>
         <ul>
-  <li><a href="index.html">Home</a></li>
-  <li><a href="about.html">About Us</a></li>
-  <li><a href="calculators.html">All Calculators</a></li>
-  <li><a href="faq.html">FAQ's</a></li>
-  <li><a href="contact.html">Contact Us</a></li>
-  <li><a href="privacy.html">Privacy Policy</a></li>
-  <li><a href="terms.html">Terms & Conditions</a></li>
-</ul>
-
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="calculators.html">All Calculators</a></li>
+          <li><a href="faq.html">FAQ's</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
       </nav>
     </div>
   </div>
@@ -66,10 +65,12 @@
     <main  class="container">
         <div class="main-content">
             <div class="content-area">
+
               <section class="welcome-section">
                 <h1>Welcome to CalculatorCasa</h1>
                 <p>CalculatorCasa — the easiest way to perform quick online calculations directly from your browser. Our free tools help students, professionals, and everyone solve math problems instantly.</p>
             </section>
+
                 <!-- Calculator Header -->
                 <div class="calculator-header">
                     <h1>Professional Calculator Suite</h1>
@@ -418,6 +419,59 @@
 </div>
         </div>
     </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("Index page loaded - Adding menu toggle");
+        
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navMenu = document.querySelector("nav ul");
+
+        console.log("Menu Toggle:", menuToggle);
+        console.log("Nav Menu:", navMenu);
+
+        if (menuToggle && navMenu) {
+            console.log("Adding click event to menu toggle");
+            
+            menuToggle.addEventListener("click", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("Menu toggle clicked");
+                
+                // Toggle menu visibility
+                navMenu.classList.toggle("show");
+                
+                // Change icon
+                const icon = this.querySelector("i");
+                if (navMenu.classList.contains("show")) {
+                    icon.classList.remove("fa-bars");
+                    icon.classList.add("fa-times");
+                    console.log("Menu opened");
+                } else {
+                    icon.classList.remove("fa-times");
+                    icon.classList.add("fa-bars");
+                    console.log("Menu closed");
+                }
+            });
+
+            console.log("Mobile menu setup complete");
+        } else {
+            console.error("Menu elements not found in index.html!");
+        }
+
+        // Active Link Highlight
+        const currentPage = window.location.href;
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            if (link.href === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+        console.log("Index page JavaScript loaded successfully!");
+    });
+    </script>
 
    
 </body>
